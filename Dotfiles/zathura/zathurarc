@@ -1,0 +1,63 @@
+# Zathura configuration file
+# See man `man zathurarc'
+
+# Open document in fit-width mode by default
+set adjust-open "best-fit"
+
+# One page per row by default
+set pages-per-row 1
+
+#stop at page boundries
+set scroll-page-aware "true"
+set smooth-scroll "true"
+set scroll-full-overlap 0.01
+set scroll-step 100
+
+#zoom settings
+set zoom-min 10
+set guioptions ""
+
+# Theme using template variables
+set recolor "true"
+
+set completion-bg "#0C0E0E"
+set completion-fg "#FFEEE3"
+set completion-group-bg "#0C0E0E"
+set completion-group-fg "#6B5D50"
+set completion-highlight-bg "#FFEEE3"
+set completion-highlight-fg "#0C0E0E"
+
+set recolor-lightcolor "#0C0E0E"
+set recolor-darkcolor "#FFEEE3"
+set default-bg "#0C0E0E"
+set default-fg "#FFEEE3"
+
+set inputbar-bg "#0C0E0E"
+set inputbar-fg "#FFEEE3"
+set notification-bg "#0C0E0E"
+set notification-fg "#FFEEE3"
+set notification-error-bg "#3D4845"
+set notification-error-fg "#FFEEE3"
+set notification-warning-bg "#3D4845"
+set notification-warning-fg "#FFEEE3"
+set statusbar-bg "#0C0E0E"
+set statusbar-fg "#FFEEE3"
+set index-bg "#0C0E0E"
+set index-fg "#FFEEE3"
+set index-active-bg "#FFEEE3"
+set index-active-fg "#0C0E0E"
+set render-loading-bg "#0C0E0E"
+set render-loading-fg "#FFEEE3"
+
+set window-title-home-tilde true
+set statusbar-basename true
+set selection-clipboard clipboard
+
+set font "JetbrainsMono Nerd Font 10"
+set recolor-reverse-video "true"
+set recolor-keephue "true"
+set render-loading "false"
+set scroll-step 50
+unmap f
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen

@@ -1,0 +1,82 @@
+# Search Engines
+g - https://www.google.com
+ddg - https://duckduckgo.com
+bing - https://www.bing.com
+br - https://search.brave.com
+spage - https://startpage.com
+
+# Email
+gm - https://mail.google.com
+pm - https://mail.proton.me
+outl - https://outlook.live.com
+ymail - https://mail.yahoo.com
+
+# Translation
+gt - https://translate.google.com
+deepl - https://www.deepl.com/translator
+ytr - https://translate.yandex.com
+
+# Education & Research
+wi - https://www.wikipedia.org
+gs - https://scholar.google.com
+wolf - https://www.wolframalpha.com
+cour - https://www.coursera.org
+edx - https://www.edx.org
+khan - https://www.khanacademy.org
+
+# Video & Music
+yt - https://www.youtube.com
+sp - https://open.spotify.com
+nflx - https://www.netflix.com
+vimeo - https://vimeo.com
+scld - https://soundcloud.com
+
+# Maps & Navigation
+gmaps - https://www.google.com/maps
+osm - https://www.openstreetmap.org
+
+# AI & Chat
+ch - https://chat.openai.com
+bard - https://bard.google.com
+claude - https://claude.ai
+
+# Code & Development
+git - https://github.com
+gitl - https://gitlab.com
+aur - https://aur.archlinux.org
+npm - https://www.npmjs.com
+pypi - https://pypi.org
+mdn - https://developer.mozilla.org
+stov - https://stackoverflow.com
+
+# Social Media
+fb - https://www.facebook.com
+twit - https://twitter.com
+inst - https://www.instagram.com
+redd - https://www.reddit.com  # Added Reddit here
+link - https://www.linkedin.com
+
+# News
+bbc - https://www.bbc.com/news
+cnn - https://www.cnn.com
+nyt - https://www.nytimes.com
+reut - https://www.reuters.com
+
+# Shopping
+amzn - https://www.amazon.com
+ebay - https://www.ebay.com
+alie - https://www.aliexpress.com
+
+# Productivity & Tools
+gr - https://app.grammarly.com
+lang - https://www.languagetool.org
+overleaf - https://www.overleaf.com
+notion - https://www.notion.so
+trello - https://trello.com
+typing - https://www.keybr.com
+deeplw - https://www.deepl.com/write # deepl write
+
+# Entertainment & Misc
+imdb - https://www.imdb.com
+twitch - https://www.twitch.tv
+angry - https://www.angryreviewer.com
