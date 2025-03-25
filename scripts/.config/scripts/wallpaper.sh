@@ -20,3 +20,5 @@ feh --bg-fill "$WALLPAPER_DIR/$RANDOM_WALLPAPER"
 wal --cols16 -i "$WALLPAPER_DIR/$RANDOM_WALLPAPER"
 # wallust Update
 wallust run "$WALLPAPER_DIR/$RANDOM_WALLPAPER"
+killall xfce4-panel
+xfce4-panel
