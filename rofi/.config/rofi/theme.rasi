@@ -1,9 +1,9 @@
 * {
-    background:     	#1C171C25;
-    background-alt: 	#FE77F725;
-    foreground:     	#FDF0D5;
-    selected:       	#F6B48540;
-    active:         	#5D466110;
-    urgent:         	#ED8DE875;
-    Prompt:		#1C171C;
+    background:     	#10101625;
+    background-alt: 	#75B6F025;
+    foreground:     	#DDFAFD;
+    selected:       	#85D6F740;
+    active:         	#4C568310;
+    urgent:         	#76C9EC75;
+    Prompt:		#101016;
 }
