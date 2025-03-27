@@ -19,8 +19,8 @@ rofi.target = "~/.config/rofi/theme.rasi"
 swaync.template = "swaync.css"
 swaync.target = "~/.config/swaync/colors.css"
 
-waybar.template = "waybar.css"
-waybar.target = "~/.config/waybar/colors.css"
+waybar.template = "colors-waybar.css"
+waybar.target = "~/.config/waybar/colors-waybar.css"
 
 xresourcs.template = "Xresources"
 xresourcs.target = "~/.Xcolors"
