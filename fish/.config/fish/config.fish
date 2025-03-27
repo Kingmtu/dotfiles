@@ -48,7 +48,7 @@ alias clean='sudo pacman -Sc' #removing old packages from cache
 set -x STARSHIP_CONFIG ~/.config/starship/nerd-font-symbols.toml
 starship init fish | source
 zoxide init fish | source
-#zoxide init --cmd cd fish | source
+zoxide init --cmd cd fish | source
 fzf --fish | source
 #~/.x-cmd.root/bin/x fish --setup
 
