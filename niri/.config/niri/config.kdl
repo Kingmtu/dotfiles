@@ -1,3 +1,5 @@
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "swww-daemon"
 // This config is in the KDL format: https://kdl.dev
 // "/-" comments out the following node.
 // Check the wiki for a full description of the configuration:
@@ -140,7 +142,7 @@ layout {
     // preset-window-heights { }
 
     // You can change the default width of the new windows.
-    default-column-width { proportion 0.9; }
+    default-column-width { proportion 0.5; }
     // If you leave the brackets empty, the windows themselves will decide their initial width.
     // default-column-width {}
 
@@ -161,7 +163,7 @@ layout {
         off
 
         // How many logical pixels the ring extends out from the windows.
-        width 1
+        width 2
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
@@ -181,13 +183,12 @@ layout {
         // You can use any CSS linear-gradient tool on the web to set these up.
         // Changing the color space is also supported, check the wiki for more info.
         //
-        //active-gradient from="#80c8ff" to="#bd9df2" angle=45
-
+        active-gradient from="#8ec07c" to="#d5c4a1" in="oklch" angle=90 relative-to="workspace-view"
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
         // To do that, set relative-to="workspace-view".
-        //
-        inactive-gradient from="#505050" to="#909090" angle=45 relative-to="workspace-view"
+        inactive-color "#7c6f64"
+        //inactive-gradient from="#505050" to="#909090" angle=45 relative-to="workspace-view"
     }
 
     // You can also add a border. It's similar to the focus ring, but always visible.
@@ -197,7 +198,8 @@ layout {
         off
 
         width 2
-
+        active-color "#ffc87f"
+        inactive-color "#505050" 
         // active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view"
         // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
@@ -260,10 +262,6 @@ animations {
 // Work around WezTerm's initial configure bug
 // by setting an empty default-column-width.
 window-rule {
-    match app-id=r#"firefox"#
-    open-maximized false
-    geometry-corner-radius 12
-    clip-to-geometry true
 }
 
 window-rule {
@@ -298,8 +296,8 @@ window-rule {
 
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
-/-window-rule {
-    geometry-corner-radius 12
+window-rule {
+    geometry-corner-radius 5
     clip-to-geometry true
 }
 
@@ -331,9 +329,9 @@ binds {
     Mod+Ctrl+Print { spawn "flameshot" "gui";}
     Mod+Shift+X {spawn "arcolinux-powermenu";}
 
-    Mod+X { spawn "archlinux-logout";}
+    Mod+X { spawn "wlogout";}
 
-    Mod+Shift+Return { spawn "thunar"; }
+    Mod+Shift+Return { spawn "alacritty"; }
 
     Alt+N { spawn "variety" "-n";}
     Alt+P { spawn "variety" "-p";}
@@ -354,7 +352,6 @@ binds {
     Ctrl+Alt+B  { spawn "brave";}
     Ctrl+Alt+Delete { spawn "archlinux-logout"; }
     Ctrl+Alt+E { spawn "archlinux-tweak-tool";}
-    Ctrl+Alt+End { spawn "dex" "--term" "alacritty" "/usr/share/applications/btop.desktop";}
     Ctrl+Alt+F { spawn "firefox";}
     ctrl+Alt+G { spawn "chromium" "-no-default-browser-check";}
     ctrl+Alt+H { spawn "arcolinux-app-glade";}
@@ -362,11 +359,8 @@ binds {
     Ctrl+Alt+L { spawn "archlinux-logout";}
     Ctrl+Alt+P { spawn "pamac-manager"; }
     Ctrl+Alt+S { spawn "spotify"; }
-    Ctrl+Alt+Return { spawn "alacritty"; }
-    Ctrl+Alt+T { spawn "alacritty"; }
     Ctrl+Alt+U { spawn "pavucontrol";}
     Ctrl+Alt+V { spawn "vivaldi-stable";}
-    Ctrl+Alt+W { spawn "arcolinux-welcome-app";}
 
      
     // Function keys

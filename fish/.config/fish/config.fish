@@ -16,15 +16,15 @@ alias fox='catnip -c ~/.config/catnip/config_fox.toml'
 alias fox2='catnip -c ~/.config/catnip/config_fox2.toml'
 alias fox3='catnip -c ~/.config/catnip/config_fox3.toml'
 
-# alias ls='lsd -a'
+alias ls='lsd -a'
 alias ll='lsd -ahl'
 alias icat='kitten icat'
-alias cat='catnip'
+alias cat='bat'
 alias ls='exa --icons -a'
-alias ll='exa --icons -ahl'
+#alias ll='exa --icons -ahl'
 alias tr='exa --tree --level=1'
-alias exa2='exa --tree --level=2'
-alias exa3='exa --tree --level=3'
+alias tr2='exa --tree --level=2'
+alias tr3='exa --tree --level=3'
 
 #alias c="clear; neofetch --block_range 0 7"
 #export PATH="$"PATH":/home/bluebyt/.local/bin"
