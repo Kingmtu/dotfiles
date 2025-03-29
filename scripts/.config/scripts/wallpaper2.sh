@@ -14,7 +14,7 @@ fi
 RANDOM_WALLPAPER=$(ls "$WALLPAPER_DIR" | shuf -n 1)
 
 # Change the wallpaper using feh (or your preferred wallpaper manager)
-swaybg -i "$WALLPAPER_DIR/$RANDOM_WALLPAPER"
+swaybg -i "$WALLPAPER_DIR/$RANDOM_WALLPAPER" -m fill
 
 # Run pywal to update colors
 wal --cols16 -i "$WALLPAPER_DIR/$RANDOM_WALLPAPER"
