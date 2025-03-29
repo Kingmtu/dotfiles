@@ -15,10 +15,7 @@ RANDOM_WALLPAPER=$(ls "$WALLPAPER_DIR" | shuf -n 1)
 
 # Change the wallpaper using feh (or your preferred wallpaper manager)
 feh --bg-fill "$WALLPAPER_DIR/$RANDOM_WALLPAPER"
-
-# Run pywal to update colors
-wal --cols16 -i "$WALLPAPER_DIR/$RANDOM_WALLPAPER"
 # wallust Update
-wallust run "$WALLPAPER_DIR/$RANDOM_WALLPAPER"
+wallust pywal -i "$WALLPAPER_DIR/$RANDOM_WALLPAPER"
 killall xfce4-panel
 xfce4-panel

@@ -328,8 +328,13 @@ binds {
 
     Mod+T { spawn "alacritty"; }
     Mod+Shift+W { spawn "~/.config/scripts/wallpaper2.sh"; }
-    Mod+Return { spawn "kitty"; }
     Mod+Space { spawn "~/.config/scripts/rofi.sh"; }
+    Mod+Return { spawn "kitty"; }
+    // Alt+Space { spawn "~/.config/scripts/sherlock.sh"; }
+    // $menu = sherlock
+
+    Alt+Space { spawn "sherlock"; }
+
 
 
     Mod+D { spawn "~/.config/niri/scripts/fullmenut"; }

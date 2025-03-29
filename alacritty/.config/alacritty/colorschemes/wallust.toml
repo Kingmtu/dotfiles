@@ -9,29 +9,29 @@ bold_italic.family = "Jetbrains Mono Nerd Font"
 size = 12.0
 
 [colors.primary]
-background = '#1A1E20'
-foreground = '#EEF6FC'
+background = '#121314'
+foreground = '#F2E8DB'
 
 [colors.cursor]
-text = '#EEF6FC'
-cursor = '#D0D4E9'
+text = '#F2E8DB'
+cursor = '#B5BEB0'
 
 [colors.normal]
-black   = '#404547'
-red     = '#F29074'
-green   = '#B1B2D6'
-yellow  = '#CDC24A'
-blue    = '#D3D7E2'
-magenta = '#F2DA85'
-cyan    = '#CFE5F5'
-white   = '#DFE9F2'
+black   = '#3C3D3F'
+red     = '#BD6E49'
+green   = '#789585'
+yellow  = '#3A99C1'
+blue    = '#D9A28A'
+magenta = '#A9B5B8'
+cyan    = '#DBBD98'
+white   = '#E5D6C3'
 
 [colors.bright]
-black   = '#9CA3A9'
-red     = '#F29074'
-green   = '#B1B2D6'
-yellow  = '#CDC24A'
-blue    = '#D3D7E2'
-magenta = '#F2DA85'
-cyan    = '#CFE5F5'
-white   = '#DFE9F2'
+black   = '#A09689'
+red     = '#BD6E49'
+green   = '#789585'
+yellow  = '#3A99C1'
+blue    = '#D9A28A'
+magenta = '#A9B5B8'
+cyan    = '#DBBD98'
+white   = '#E5D6C3'

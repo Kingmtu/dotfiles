@@ -12,11 +12,7 @@ fi
 
 # Get a random wallpaper from the directory
 RANDOM_WALLPAPER=$(ls "$WALLPAPER_DIR" | shuf -n 1)
-
+wallust pywal -i "$WALLPAPER_DIR/$RANDOM_WALLPAPER"
+matugen image "$WALLPAPER_DIR/$RANDOM_WALLPAPER"
 # Change the wallpaper using feh (or your preferred wallpaper manager)
 swaybg -i "$WALLPAPER_DIR/$RANDOM_WALLPAPER" -m fill
-
-# Run pywal to update colors
-wal --cols16 -i "$WALLPAPER_DIR/$RANDOM_WALLPAPER"
-# wallust Update
-wallust run "$WALLPAPER_DIR/$RANDOM_WALLPAPER"
