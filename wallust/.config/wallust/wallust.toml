@@ -1,8 +1,8 @@
 backend = "full"
-palette = "dark"
+palette = "dark16"
 color_space = "lchmixed"
 check_contrast = true
-
+pywal = true
 [templates]
 hypr.template = "hypr.conf"
 hypr.target = "~/.config/hypr/colors.conf"
@@ -22,8 +22,8 @@ swaync.target = "~/.config/swaync/colors.css"
 waybar.template = "theme.css"
 waybar.target = "~/.config/waybar/theme.css"
 
-xresourcs.template = "pywal.Xresources"
-xresourcs.target = "~/.Xresources"
+xresourcs.template = "Xresources"
+xresourcs.target = "/home/jarvis/.Xresources"
 
 spotify.template = "spotify"
 spotify.target = "~/.config/spicetify/Themes/wal/color.ini"
@@ -51,4 +51,9 @@ discord.target = "~/.config/Vencord/themes/wallust.css"
 
 alacritty.template = "alacritty.toml"
 alacritty.target = "~/.config/alacritty/colorschemes/wallust.toml"
+
+
+dunst.template = "dunstrc"
+dunst.target = "~/.config/dunst/dunstrc"
+
 

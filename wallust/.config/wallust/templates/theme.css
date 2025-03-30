@@ -1,10 +1,10 @@
 @define-color bar-bg rgba(0, 0, 0, 0);
 
-@define-color main-bg rgba({{background | rgb}},0.50);
-@define-color main-fg {{color15}};
+@define-color main-bg rgba({{background | rgb}},0.70);
+@define-color main-fg {{foreground}};
 
-@define-color wb-act-bg  {{color1}};
-@define-color wb-act-fg {{color15}};
+@define-color wb-act-bg  {{color13}};
+@define-color wb-act-fg {{background}};
 
-@define-color wb-hvr-bg {{color1}};
-@define-color wb-hvr-fg {{color15}};
+@define-color wb-hvr-bg {{color13}};
+@define-color wb-hvr-fg {{background}};

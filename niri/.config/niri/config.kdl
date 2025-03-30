@@ -329,7 +329,7 @@ binds {
     Mod+T { spawn "alacritty"; }
     Mod+Shift+W { spawn "~/.config/scripts/wallpaper2.sh"; }
     Mod+Return { spawn "kitty"; }
-    Mod+Space { spawn "~/.config/rofi/launchers/launcher.sh"; }
+    Mod+Space { spawn "~/.config/scripts/rofi.sh" ; }
     Mod+Shift+Space { spawn "~/.config/rofi/launchers/sidelauncher.sh"; }
     Mod+Alt+R { spawn "~/.config/rofi/scripts/launcher-style-changer"; }
 
