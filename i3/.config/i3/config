@@ -374,8 +374,8 @@ set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
-set_from_resource $fg i3wm.color7 #f4dc98
-set_from_resource $bg i3wm.color3 #0A1837
+set_from_resource $fg i3wm.color0  #ff7800
+set_from_resource $bg i3wm.color14 #0A1837
 
 client.focused           $bg   $bg   $fg   $bg   $bg
 client.focused_inactive  $bg   $bg   $fg   $bg   $bg

@@ -20,8 +20,8 @@ environment {
 }
 
 layer-rule {
-    match namespace="waybar"
-    match at-startup=true
+    // match namespace="waybar"
+    // match at-startup=true
 
     // Properties that apply continuously.
     // opacity 0.5
@@ -328,8 +328,16 @@ binds {
 
     Mod+T { spawn "alacritty"; }
     Mod+Shift+W { spawn "~/.config/scripts/wallpaper2.sh"; }
-    Mod+Space { spawn "~/.config/scripts/rofi.sh"; }
     Mod+Return { spawn "kitty"; }
+    Mod+Space { spawn "~/.config/rofi/launchers/launcher.sh"; }
+    Mod+Shift+Space { spawn "~/.config/rofi/launchers/sidelauncher.sh"; }
+    Mod+Alt+R { spawn "~/.config/rofi/scripts/launcher-style-changer"; }
+
+    Alt+w { spawn "~/.config/rofi/scripts/launcher-style-changer"; }
+
+    Alt+B { spawn "~/.config/rofi/scripts/bookmarks/bookmarks.sh"; }
+    Mod+Alt+Right { spawn "sh" "-c" "cd /home/jarvis/.local/lib/hyde/ \"./wbarconfgen.sh n\""  ; }
+    Mod+Alt+Left { spawn "~/.config/rofi/scripts/bookmarks/bookmarks.sh"; }
     // Alt+Space { spawn "~/.config/scripts/sherlock.sh"; }
     // $menu = sherlock
 

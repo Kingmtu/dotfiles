@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # --- Configuration ---
 WALLPAPER_DIR="/home/jarvis/Pictures/wallpapers" # Replace with your wallpaper directory
 # --- End Configuration ---
@@ -10,9 +9,9 @@ if [ ! -d "$WALLPAPER_DIR" ]; then
   exit 1
 fi
 
-# Get a random wallpaper from the directory
 RANDOM_WALLPAPER=$(ls "$WALLPAPER_DIR" | shuf -n 1)
+
+#swaybg -i -m fill "$WALLPAPER_DIR/$RANDOM_WALLPAPER"
+swww query || swww-daemon
+swww img "$WALLPAPER_DIR/$RANDOM_WALLPAPER" --transition-fps 30 --transition-type any --transition-duration 3
 wallust pywal -i "$WALLPAPER_DIR/$RANDOM_WALLPAPER"
-matugen image "$WALLPAPER_DIR/$RANDOM_WALLPAPER"
-# Change the wallpaper using feh (or your preferred wallpaper manager)
-swaybg -i "$WALLPAPER_DIR/$RANDOM_WALLPAPER" -m fill

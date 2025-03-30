@@ -26,4 +26,4 @@ y = 12
 
 [general]
 live_config_reload = true
-import = ["/home/jarvis/.config/alacritty/colorschemes/wallust.toml", "/home/jarvis/.config/alacritty/fonts.toml"]
+import = ["~/.cache/wal/colors-alacritty.toml", "/home/jarvis/.config/alacritty/fonts.toml"]
