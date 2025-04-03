@@ -2,7 +2,7 @@
         "format": "{}",
         "rotate": ${r_deg},
         "exec": "echo ; echo  logout",
-        "on-click": "~/.config/ml4w/scripts/wlogout.sh"",
+        "on-click": "~/.config/ml4w/scripts/wlogout.sh",
         "on-click-right": "hyprlock",
         "interval" : 86400, // once every day
         "tooltip": true
