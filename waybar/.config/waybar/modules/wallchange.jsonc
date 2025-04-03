@@ -3,7 +3,7 @@
         "rotate": ${r_deg},
         "exec": "echo ; echo 󰆊 switch wallpaper",
         "on-click": "wallpaper2.sh",
-        "on-click-right": "wallpaper-switcher2.sh",
+        "on-click-right": "~/.config/scripts/wallpaper2.sh",
         "on-click-middle": "sleep 0.1 && swwwallselect.sh",
         "interval" : 86400, // once every day
         "tooltip": true

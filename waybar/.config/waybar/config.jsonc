@@ -7,7 +7,7 @@
     "output": [ "*" ],
     "position": "top",
     "mod": "dock",
-    "height": 31,
+    "height": 35,
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
@@ -285,7 +285,7 @@
         "rotate": 0,
         "exec": "echo ; echo 󰆊 switch wallpaper",
         "on-click": "wallpaper2.sh",
-        "on-click-right": "wallpaper-switcher2.sh",
+        "on-click-right": "~/.config/scripts/wallpaper2.sh",
         "on-click-middle": "sleep 0.1 && swwwallselect.sh",
         "interval" : 86400, // once every day
         "tooltip": true
@@ -328,7 +328,7 @@
         "format": "{}",
         "rotate": 0,
         "exec": "echo ; echo  logout",
-        "on-click": "~/.config/ml4w/scripts/wlogout.sh",
+        "on-click": "wlogout.sh",
         "on-click-right": "hyprlock",
         "interval" : 86400, // once every day
         "tooltip": true
