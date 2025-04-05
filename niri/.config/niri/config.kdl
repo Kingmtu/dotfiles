@@ -360,7 +360,8 @@ binds {
 
   // Suggested binds for running programs: terminal, app launcher, screen locker.
   Mod+R { spawn "wofi" "-i" "--show drun"; }
-  Mod+T { spawn "alacritty"; }
+  //Mod+T { spawn "alacritty"; }
+  Mod+T { spawn "thorium-browser"; }
   Mod+Shift+W { spawn "~/.config/scripts/wallpaper2.sh"; }
   Mod+Return { spawn "kitty"; }
   Mod+W { spawn "waypaper"; }
@@ -382,7 +383,7 @@ binds {
   //Mod+W { spawn "~/.config/waybar/waybar-niri.sh"; }
   Mod+Shift+C { spawn "qalculate-gtk"; }
   Mod+G { spawn "hyprpicker" "-ra"; }
-  Mod+O { spawn "obsidinan"; }
+  Mod+O { spawn "obsidian"; }
   Mod+V { spawn "vesktop"; }
   Mod+N { spawn "pavucontrol"; }
   Mod+Shift+N { spawn "blueman-manager"; }

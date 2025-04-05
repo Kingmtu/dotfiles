@@ -1,5 +1,5 @@
 backend = "full"
-palette = "dark16"
+palette = "light16"
 color_space = "lchmixed"
 check_contrast = true
 pywal = true

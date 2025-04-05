@@ -7,7 +7,7 @@
     "output": [ "*" ],
     "position": "top",
     "mod": "dock",
-    "height": 35,
+    "height": 30,
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
@@ -186,7 +186,7 @@
         "format-linked": "󰈀 {ifname} (No IP)",
         "format-disconnected": "󰖪 ",
         "tooltip-format-disconnected": "Disconnected",
-        "format-alt": "<span foreground='#99ffdd'> {bandwidthDownBytes}</span> <span foreground='#ffcc66'> {bandwidthUpBytes}</span>",
+        "format-alt": "<span foreground='#000000'> {bandwidthDownBytes}</span> <span foreground='#000000'> {bandwidthUpBytes}</span>",
         "interval": 2,
     },
 
