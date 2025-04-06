@@ -315,7 +315,7 @@ prefer-no-csd
 // You can change the path where screenshots are saved.
 // A ~ at the front will be expanded to the home directory.
 // The path is formatted with strftime(3) to give you the screenshot date and time.
-screenshot-path "~/My/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 // You can also set this to null to disable saving screenshots to disk.
 // screenshot-path null
@@ -366,11 +366,13 @@ binds {
   Mod+Return { spawn "kitty"; }
   Mod+W { spawn "waypaper"; }
   Mod+B { spawn "~/.config/scripts/waybar.sh";}
-  Mod+Space { spawn "~/.config/scripts/rofi.sh" ; }
+  Mod+Space { spawn "~/.config/rofi/scripts/launcher" ; }
   Mod+Shift+Space { spawn "~/.config/rofi/launchers/sidelauncher.sh"; }
   Mod+Alt+R { spawn "~/.config/rofi/scripts/launcher-style-changer"; }
   Alt+w { spawn "~/.config/rofi/scripts/launcher-style-changer"; }
   Alt+B { spawn "~/.config/rofi/scripts/bookmarks/bookmarks.sh"; }
+  Alt+Space { spawn "~/.config/rofi/scripts/books-search.sh"; }
+  Alt+S { spawn "~/.config/scripts/rofi_run_script.sh"; }
   Mod+Alt+Up { spawn "sh" "-c" "cd /home/jarvis/.local/lib/hyde/ \"./wbarconfgen.sh n\""  ; }
   Mod+Alt+down { spawn "~/.config/rofi/scripts/bookmarks/bookmarks.sh"; }
   Mod+Shift+Return { spawn "ghostty"; }

@@ -15,3 +15,4 @@ RANDOM_WALLPAPER=$(ls "$WALLPAPER_DIR" | shuf -n 1)
 swww query || swww-daemon
 swww img "$WALLPAPER_DIR/$RANDOM_WALLPAPER" --transition-fps 30 --transition-type any --transition-duration 3
 wallust pywal -i "$WALLPAPER_DIR/$RANDOM_WALLPAPER"
+matugen image "$WALLPAPER_DIR/$RANDOM_WALLPAPER"

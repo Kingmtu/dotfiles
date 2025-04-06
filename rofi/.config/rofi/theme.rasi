@@ -1,9 +1,11 @@
 * {
-    background:     	#FFFCF925;
-    background-alt: 	#37371725;
-    foreground:     	#0A1021;
-    selected:       	#351E1940;
-    active:         	#35442010;
-    urgent:         	#26442F75;
-    Prompt:		#FFFCF9;
+    surface:     	#795E1570;
+    surface-container-highest: 	#795E1570;
+    surface-alpha : #CAC4B6;
+    on-surface:     	#E2E3E5;
+    surface:       	#795E1550;
+    tertiary:         	#CCC191;
+    primary:     #E2E3E5;            
+    error:         	#CAC4B6;
+    Prompt:		#795E15;
 }

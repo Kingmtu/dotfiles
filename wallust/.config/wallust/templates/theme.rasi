@@ -1,9 +1,11 @@
 * {
-    background:     	{{background}}25;
-    background-alt: 	{{color3}}25;
-    foreground:     	{{foreground}};
-    selected:       	{{color5}}40;
-    active:         	{{color9}}10;
-    urgent:         	{{color12}}75;
+    surface:     	{{background}}70;
+    surface-container-highest: 	{{background}}70;
+    surface-alpha : {{color1}};
+    on-surface:     	{{foreground}};
+    surface:       	{{background}}50;
+    tertiary:         	{{color2}};
+    primary:     {{foreground}};            
+    error:         	{{color1}};
     Prompt:		{{background}};
 }

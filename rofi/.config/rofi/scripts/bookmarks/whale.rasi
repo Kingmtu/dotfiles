@@ -1,0 +1,169 @@
+/*
+ * ROFI whale color theme v4 (Corrected)
+ *
+ * Based on the provided whale image, fixing highlight issues.
+ * Source: User Request & Image Analysis
+ * User: AI Assistant
+ * Copyright: *!
+ */
+
+configuration {
+  font: "Noto Sans 12";
+
+  drun {
+    display-name: " "; // Magnifying glass icon (adjust if needed)
+  }
+
+  run {
+    display-name: " "; // Terminal icon (adjust if needed)
+  }
+
+  window {
+    display-name: " "; // Window icon
+  }
+
+  timeout {
+    delay: 10;
+    action: "kb-cancel";
+  }
+
+  filebrowser {
+      display-name: " "; // Folder icon
+  }
+
+  // Optional: uncomment if you want icons displayed by default in drun mode
+  // drun {
+  //   show-icons: true;
+  // }
+}
+
+* {
+  /* Define colors based on the whale image */
+  bg:       #0F1F3D; /* Deep dark blue background */
+  bg-alt:   #25375A; /* Lighter blue for input bar & selection bg */
+  fg:       #6B84A9; /* Muted blue-grey for default text */
+  fg-alt:   #D1E4F6; /* Light blue/off-white for selected text/input/highlights */
+  accent:   #3A7BD5; /* Brighter blue from starfish (optional use) */
+
+  /* Base styles */
+  border:           0;
+  margin:           0;
+  padding:          0;
+  spacing:          0;
+
+  text-color:       @fg-alt; /* Default text color (mostly overridden below) */
+  background-color: @bg;     /* Default background color */
+
+  /* Make elements transparent so backgrounds show through */
+  background-color: transparent;
+  text-color:       inherit;
+}
+
+window {
+  width:            700px;
+  background-color: @bg;     /* Set the main window background */
+  border-radius:    5px;     /* Optional: slightly rounded window corners */
+  // padding: 10px; /* Optional: Add padding around the entire window */
+}
+
+mainbox {
+  children: [ inputbar, listview ];
+  spacing:  8px; /* A bit more space between input and list */
+  padding:  8px; /* Padding inside the mainbox */
+}
+
+inputbar {
+  children:         [ prompt, entry ];
+  background-color: @bg-alt;
+  text-color:       @fg-alt;
+  padding:          8px;
+  border-radius:    4px; /* Rounded corners for the input bar */
+}
+
+entry {
+  background-color: inherit; /* Inherits from inputbar */
+  text-color:       inherit; /* Inherits from inputbar */
+  padding:          7px 10px;
+  placeholder:      "Dive in..."; /* Themed placeholder text */
+  placeholder-color: @fg;      /* Style the placeholder text */
+  cursor:           text;
+  vertical-align:   0.5;
+  // cursor-color:     @fg-alt; /* Removed for now, can cause issues */
+}
+
+prompt {
+  enabled:          true;
+  background-color: inherit; /* Inherits from inputbar */
+  text-color:       inherit; /* Use fg-alt for consistency */
+  padding:          7px 10px; /* Match entry padding */
+  font:             "Noto Sans 14"; /* Make prompt icon slightly larger */
+  vertical-align:   0.5;
+}
+
+listview {
+  lines:            8;
+  columns:          1;
+  fixed-height:     true;
+  spacing:          4px; /* Space between elements */
+  scrollbar:        false;
+  padding:          5px 0px; /* Add some vertical padding, no horizontal */
+  background-color: transparent; /* Inherit from window */
+  cycle:            true; // Allow cycling through list
+  dynamic:          true; // Adjust height if fewer items
+  layout:           vertical;
+}
+
+element {
+  children:         [ element-icon, element-text ];
+  padding:          6px 8px; /* Padding within each element */
+  border-radius:    3px;
+  background-color: transparent; /* Default state background */
+  cursor:           pointer;
+}
+
+element-icon {
+  size:             24px; // Icon size
+  padding:          0px 10px 0px 0px; // Space between icon and text
+  cursor:           inherit;
+  vertical-align:   0.5; // Center icon vertically
+  background-color: transparent;
+}
+
+element-text {
+  text-color:       @fg; /* Muted color for non-selected items */
+  vertical-align:   0.5; // Center text vertically
+  background-color: transparent;
+  cursor:           inherit;
+  /* CORRECTION: Set highlight color only. Boldness often comes from selection or can be inconsistent */
+  highlight:        @fg-alt;
+}
+
+/* Style for the selected element */
+element selected {
+  background-color: @bg-alt; // Use the alternate background for selection
+  text-color:       @fg-alt; // Use the bright foreground for selected text
+}
+
+/* Ensure highlight color persists on selected items if needed */
+/* Usually handled by 'element selected' text-color, but explicit if necessary */
+/* element-text selected { */
+/*    highlight: @fg-alt; */
+/* } */
+
+
+/* Optional: Styles for Urgent/Active states using the accent color */
+element urgent, element active {
+    background-color: @accent;
+    text-color:       @fg-alt; // Keep text bright on the accent color
+    border-radius:    3px;
+}
+
+/* Style scrollbar if you decide to enable it */
+/* scrollbar {
+    width:        4px ;
+    border:       0;
+    handle-width: 8px ;
+    padding:      0;
+    handle-color: @fg;
+    background-color: @bg-alt;
+} */
