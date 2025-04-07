@@ -186,7 +186,7 @@
         "format-linked": "󰈀 {ifname} (No IP)",
         "format-disconnected": "󰖪 ",
         "tooltip-format-disconnected": "Disconnected",
-        "format-alt": "<span foreground='#000000'> {bandwidthDownBytes}</span> <span foreground='#000000'> {bandwidthUpBytes}</span>",
+        "format-alt": "<span foreground='#BFD582'> {bandwidthDownBytes}</span> <span foreground='#67C3CF'> {bandwidthUpBytes}</span>",
         "interval": 2,
     },
 

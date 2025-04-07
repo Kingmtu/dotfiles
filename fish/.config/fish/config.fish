@@ -1,5 +1,5 @@
 test ! -e "$HOME/.x-cmd.root/local/data/fish/rc.fish" || source "$HOME/.x-cmd.root/local/data/fish/rc.fish" # boot up x-cmd.
-source ~/.config/lscolors.csh
+#source ~/.config/lscolors.csh
 #Set up fzf key bindings
 
 #neofetch --off --block_range 0 7
@@ -45,7 +45,7 @@ alias clean='sudo pacman -Sc' #removing old packages from cache
 #alias extract='for i in *.rar; do unrar x -o+ "$i"; end' 
 #. ~/.config/fish/functions/noti.fish
 
-set -x STARSHIP_CONFIG ~/.config/starship/themes/starship-bubbles.toml
+set -x STARSHIP_CONFIG ~/.config/starship/starship-bubbles.toml
 starship init fish | source
 zoxide init fish | source
 zoxide init --cmd cd fish | source

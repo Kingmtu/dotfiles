@@ -6,7 +6,7 @@
 SCRIPT_DIRS=(
   "/home/jarvis/.config/scripts"      # Symlink path
   "/home/jarvis/.config/rofi/scripts" # Regular directory path
-  "/home/jarvis/.local/bin"           # Regular directory path
+  # "/home/jarvis/.local/bin"           # Regular directory path
 )
 THEME_PATH="/home/jarvis/.config/rofi/launchers/styles/whale.rasi"
 PROMPT_TEXT="Run Script:"

@@ -9,7 +9,7 @@
 input {
   keyboard {
     xkb {
-      layout "us,ru"
+      layout "us"
       options "grp:alt_shift_toggle"
     }
   }
@@ -109,12 +109,12 @@ output "HDMI-A-1" {
 layout {
    tab-indicator {
         // off
-        hide-when-single-tab
+        //hide-when-single-tab
         place-within-column
         gap 5
-        width 4
+        width 15
         length total-proportion=1.0
-        position "right"
+        position "top"
         gaps-between-tabs 2
         corner-radius 8
         active-color "red"
@@ -157,9 +157,9 @@ layout {
   }
 
   // You can change the default width of the new windows.
-  default-column-width { proportion 0.7; }
+  //default-column-width { proportion 0.6; }
   // If you leave the brackets empty, the windows themselves will decide their initial width.
-  // default-column-width {}
+  default-column-width {}
 
   // By default focus ring and border are rendered as a solid background rectangle
   // behind windows. That is, they will show up through semitransparent windows.
@@ -212,7 +212,7 @@ layout {
   border {
     // The settings are the same as for the focus ring.
     // If you enable the border, you probably want to disable the focus ring.
-    off
+    // off
 
     width 3
     // active-color "#ffc87f"
@@ -236,14 +236,14 @@ layout {
 }
 // Example: enable rounded corners for all windows.
 window-rule {
-  geometry-corner-radius 10
+  geometry-corner-radius 5
   clip-to-geometry true
   block-out-from "screen-capture"
   // open-floating true
 }
 window-rule {
   match app-id="zathura"
-  opacity 0.8
+  opacity 0.95
 
 
 }
@@ -275,19 +275,19 @@ spawn-at-startup "bluetoothctl" "power" "on" // Bluetooth
 spawn-at-startup "blueman-applet" // Bluetooth
 spawn-at-startup "nm-applet" "--indicator" // Network Manager applet
 // Bar
-spawn-at-startup "~/.config/waybar/waybar-niri.sh"
+// spawn-at-startup "~/.config/waybar/waybar-niri.sh"
 // Fix wifi shutting down when laptop lid opens
-spawn-at-startup "sudo" "/etc/rc.d/rc.local"
+// spawn-at-startup "sudo" "/etc/rc.d/rc.local"
 
 environment {
   DISPLAY ":2"
   ELECTRON_OZONE_PLATFORM_HINT "auto"
   XCURSOR_THEME "catppuccin-macchiato-lavender-cursors"
-  XCURSOR_SIZE "48"
+  XCURSOR_SIZE "24"
   HYPRCURSOR_THEME "catppuccin-macchiato-lavender-cursors"
-  HYPRCURSOR_SIZE "48"
+  HYPRCURSOR_SIZE "24"
   QT_CURSOR_THEME "catppuccin-macchiato-lavender-cursors"
-  QT_CURSOR_SIZE "48"
+  QT_CURSOR_SIZE "24"
   XDG_SESSION_TYPE "wayland"
   GDK_BACKEND "wayland,x11,*"
   XDG_CURRENT_DESKTOP "wlroots"
@@ -296,13 +296,14 @@ environment {
   QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
   QT_STYLE_OVERRIDE "kvantum"
   QT_WAYLAND_DECORATION "kvantum"
+
 }
 hotkey-overlay {
     skip-at-startup
 }
 cursor {
   xcursor-theme "Bibata-Modern-Ice"
-  xcursor-size 23
+  xcursor-size 24
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -360,6 +361,8 @@ binds {
 
   // Suggested binds for running programs: terminal, app launcher, screen locker.
   Mod+R { spawn "wofi" "-i" "--show drun"; }
+  Mod+y { spawn "~/.config/scripts/yazi.sh"; }
+
   //Mod+T { spawn "alacritty"; }
   Mod+T { spawn "thorium-browser"; }
   Mod+Shift+W { spawn "~/.config/scripts/wallpaper2.sh"; }
@@ -386,7 +389,7 @@ binds {
   Mod+Shift+C { spawn "qalculate-gtk"; }
   Mod+G { spawn "hyprpicker" "-ra"; }
   Mod+O { spawn "obsidian"; }
-  Mod+V { spawn "vesktop"; }
+  //Mod+V { spawn "vesktop"; }
   Mod+N { spawn "pavucontrol"; }
   Mod+Shift+N { spawn "blueman-manager"; }
   Mod+L { spawn "wlogout";}
@@ -565,7 +568,7 @@ binds {
   Mod+Period { expel-window-from-column; }
 
   Mod+D      { switch-preset-column-width; }
-  Mod+Ctrl+D { maximize-column; }
+  Mod+F { maximize-column; }
   Mod+Shift+D      { switch-preset-window-height; }
   Mod+Ctrl+Shift+D { reset-window-height; }
   Mod+Shift+F { fullscreen-window; }
@@ -587,7 +590,7 @@ binds {
   Mod+Shift+Equal { set-window-height "+10%"; }
 
   // Move the focused window between the floating and the tiling layout.
-  Mod+F { toggle-window-floating; }
+  Mod+V { toggle-window-floating; }
   Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
   // Actions to switch layouts.

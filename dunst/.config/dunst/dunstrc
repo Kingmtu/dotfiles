@@ -115,15 +115,15 @@ dmenu = /usr/bin/rofi -config notification -dmenu -p dunst:
 
 
 [urgency_low]
-    background = #0F1113
-    foreground = #B9F7F3
-    frame_color = #0D8C8B
+    background = #CFD6D6
+    foreground = #020A0A
+    frame_color = #173D25
     icon = "~/.local/share/icons/Wallbash-Icon/hyprdots.svg"
     timeout = 5
 
 [urgency_normal]
-    background = #0F1113
-    foreground = #B9F7F3
-    frame_color = #0D8C8B
+    background = #CFD6D6
+    foreground = #020A0A
+    frame_color = #173D25
     icon = "~/.local/share/icons/Wallbash-Icon/hyprdots.svg"
     timeout = 5
