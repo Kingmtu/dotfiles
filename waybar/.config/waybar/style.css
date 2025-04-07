@@ -3,8 +3,8 @@
     border-radius: 0px;
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    font-size: 13px;
-    min-height: 13px;
+    font-size: 11px;
+    min-height: 11px;
 }
 
 @import "theme.css";
@@ -96,6 +96,7 @@ tooltip {
 
 #backlight,
 #battery,
+#custom-Apps,
 #bluetooth,
 #custom-cliphist,
 #clock,

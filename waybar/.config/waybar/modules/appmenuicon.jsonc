@@ -1,0 +1,7 @@
+  // Rofi Application Launcher
+  "Apps": {
+    "format": "",
+    "on-click": "sleep 0.2;rofi -show drun -replace",
+    "on-click-right": "launcher.sh",
+    "tooltip-format": "Left: Open the application launcher\nRight: Show all keybindings"
+  },
