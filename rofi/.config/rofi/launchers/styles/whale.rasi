@@ -9,7 +9,8 @@
 
 configuration {
   font: "Noto Sans 12";
-
+  me-select-entry: "";
+  me-accept-entry: [ MousePrimary, MouseSecondary, MouseDPrimary ];
   drun {
     display-name: " "; // Magnifying glass icon (adjust if needed)
   }
