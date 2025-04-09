@@ -1,6 +1,6 @@
 backend = "full"
-#palette = "dark16"
-palette = "softdark16"
+palette = "dark16"
+#palette = "softdark16"
 #palette = "light16"
 #palette = "dark16"
 #palette = "dark16"

@@ -1,0 +1,11 @@
+@import "/home/jarvis/.config/waybar/matugen/matugen-waybar.css";
+@define-color bar-bg rgba(0, 0, 0, 0);
+
+@define-color main-bg @surface_tint;
+@define-color main-fg @background;
+
+@define-color wb-act-bg @primary_container;
+@define-color wb-act-fg @on_tertiary_container;
+
+@define-color wb-hvr-bg @primary_container;
+@define-color wb-hvr-fg @on_tertiary_container;
