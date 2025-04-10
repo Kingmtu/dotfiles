@@ -36,12 +36,12 @@ local user_opts = {
                                 -- to be shown as OSC title
     showtitle = true,            -- show title and no hide timeout on pause
     timetotal = true,              -- display total time instead of remaining time?
-    timems = false,             -- display timecodes with milliseconds
     visibility = 'auto',        -- only used at init to set visibility_mode(...)
     windowcontrols = 'auto',    -- whether to show window controls
     volumecontrol = true,       -- whether to show mute button and volumne slider
     processvolume = true,		-- volue slider show processd volume
     language = 'eng',            -- eng=English, chs=Chinese
+    thumbpad = 4,               -- thumbnail border size
 }
 
 -- Localization
@@ -116,7 +116,6 @@ local state = {
     active_element = nil,                   -- nil = none, 0 = background, 1+ = see elements[]
     active_event_source = nil,              -- the 'button' that issued the current event
     rightTC_trem = not user_opts.timetotal, -- if the right timecode should display total or remaining time
-    tc_ms = user_opts.timems,               -- should the timecodes display their time with milliseconds
     mp_screen_sizeX, mp_screen_sizeY,       -- last screen-resolution, to detect resolution changes to issue reINITs
     initREQ = false,                        -- is a re-init request pending?
     last_mouseX, last_mouseY,               -- last mouse position, to detect significant mouse movement
@@ -140,6 +139,13 @@ local state = {
     lastvisibility = user_opts.visibility,		-- save last visibility on pause if showtitle
     sys_volume,									--system volume
     proc_volume,								--processed volume
+}
+
+local thumbfast = {
+    width = 0,
+    height = 0,
+    disabled = true,
+    available = false
 }
 
 local window_control_box_width = 138
@@ -657,6 +663,42 @@ function render_elements(master_ass)
                     elem_ass:append(slider_lo.tooltip_style)
                     ass_append_alpha(elem_ass, slider_lo.alpha, 0)
                     elem_ass:append(tooltiplabel)
+
+                    -- thumbnail
+                    if element.thumbnail and not thumbfast.disabled then
+                        local osd_w = mp.get_property_number("osd-width")
+                        if osd_w then
+                            local r_w, r_h = get_virt_scale_factor()
+
+                            local thumbPad = user_opts.thumbpad
+                            local thumbMarginX = 18 / r_w
+                            local thumbMarginY = 30
+                            local tooltipBgColor = "FFFFFF"
+                            local tooltipBgAlpha = 80
+                            local thumbX = math.min(osd_w - thumbfast.width - thumbMarginX, math.max(thumbMarginX, tx / r_w - thumbfast.width / 2))
+                            local thumbY = ((ty - thumbMarginY) / r_h - thumbfast.height)
+
+                            thumbX = math.floor(thumbX + 0.5)
+                            thumbY = math.floor(thumbY + 0.5)
+
+                            elem_ass:new_event()
+                            elem_ass:pos(thumbX * r_w, ty - thumbMarginY - thumbfast.height * r_h)
+                            elem_ass:append(osc_styles.Tooltip)
+                            elem_ass:draw_start()
+                            elem_ass:rect_cw(-thumbPad * r_w, -thumbPad * r_h, (thumbfast.width + thumbPad) * r_w, (thumbfast.height + thumbPad) * r_h)
+                            elem_ass:draw_stop()
+
+                            mp.commandv("script-message-to", "thumbfast", "thumb",
+                                mp.get_property_number("duration", 0) * (sliderpos / 100),
+                                thumbX,
+                                thumbY
+                            )
+                        end
+                    end
+                else
+                    if element.thumbnail and thumbfast.available then
+                        mp.commandv("script-message-to", "thumbfast", "clear")
+                    end
                 end
             end
 
@@ -1374,6 +1416,7 @@ function osc_init()
     ne = new_element('seekbar', 'slider')
 
     ne.enabled = not (mp.get_property('percent-pos') == nil)
+    ne.thumbnail = true
     ne.slider.markerF = function ()
         local duration = mp.get_property_number('duration', nil)
         if not (duration == nil) then
@@ -1538,34 +1581,16 @@ function osc_init()
 		end
     -- tc_left (current pos)
     ne = new_element('tc_left', 'button')
-    ne.content = function ()
-        if (state.tc_ms) then
-            return (mp.get_property_osd('playback-time/full'))
-        else
-            return (mp.get_property_osd('playback-time'))
-        end
-    end
-    ne.eventresponder['mbtn_left_up'] = function ()
-        state.tc_ms = not state.tc_ms
-        request_init()
-    end
+    ne.content = function () return (mp.get_property_osd('playback-time')) end
 
     -- tc_right (total/remaining time)
     ne = new_element('tc_right', 'button')
     ne.content = function ()
         if (mp.get_property_number('duration', 0) <= 0) then return '--:--:--' end
         if (state.rightTC_trem) then
-            if (state.tc_ms) then
-                return ('-'..mp.get_property_osd('playtime-remaining/full'))
-            else
-                return ('-'..mp.get_property_osd('playtime-remaining'))
-            end
+            return ('-'..mp.get_property_osd('playtime-remaining'))
         else
-            if (state.tc_ms) then
-                return (mp.get_property_osd('duration/full'))
-            else
-                return (mp.get_property_osd('duration'))
-            end
+            return (mp.get_property_osd('duration'))
         end
     end
     ne.eventresponder['mbtn_left_up'] =
@@ -2191,6 +2216,15 @@ end
 visibility_mode(user_opts.visibility, true)
 mp.register_script_message('osc-visibility', visibility_mode)
 mp.add_key_binding(nil, 'visibility', function() visibility_mode('cycle') end)
+
+mp.register_script_message("thumbfast-info", function(json)
+    local data = utils.parse_json(json)
+    if type(data) ~= "table" or not data.width or not data.height then
+        msg.error("thumbfast-info: received json didn't produce a table with thumbnail information")
+    else
+        thumbfast = data
+    end
+end)
 
 set_virt_mouse_area(0, 0, 0, 0, 'input')
 set_virt_mouse_area(0, 0, 0, 0, 'window-controls')

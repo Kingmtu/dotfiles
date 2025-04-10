@@ -7,7 +7,7 @@
     "output": [ "*" ],
     "position": "top",
     "mod": "dock",
-    "height": 26,
+    "height": 35,
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
@@ -16,7 +16,7 @@
 
 // positions generated based on config.ctl //
 
-	"modules-left": ["custom/padd","custom/l_end","custom/Apps", "cpu","custom/r_end","custom/l_end","clock","custom/r_end","custom/l_end","niri/workspaces","custom/r_end","custom/padd"],
+	"modules-left": ["custom/padd","custom/l_end","custom/Apps","cpu","custom/gpuinfo#intel","custom/r_end","custom/l_end","clock","custom/r_end","custom/l_end","niri/workspaces","custom/r_end","custom/padd"],
 	"modules-center": ["custom/padd","custom/l_end","wlr/taskbar","custom/r_end","custom/padd"],
 	"modules-right": ["custom/padd","custom/l_end","backlight","network","pulseaudio","pulseaudio#microphone","custom/updates","custom/r_end","custom/l_end","privacy","tray","battery","custom/r_end","custom/l_end","custom/wallchange","custom/cliphist","custom/power","custom/r_end","custom/padd"],
 
@@ -26,8 +26,8 @@
   // Rofi Application Launcher
     "custom/Apps": {
       "format": "",
-      "on-click": "launcher.sh",
-      "on-click-right": "launcher.sh",
+      "on-click": "~/.config/rofi/launchers/launcher.sh",
+      "on-click-right": "~/.config/rofi/launchers/launcher.sh",
       "tooltip-format": "Left: Open the application launcher\nRight: Show all keybindings"
     },
     "cpu": {
@@ -57,7 +57,7 @@
     },
 
     "custom/cpuinfo": {
-        "exec": " cpuinfo.sh",
+        "exec": "~/.config/waybar/scripts/cpuinfo.sh",
         "return-type": "json",
         "format": "{}",
         "rotate": 0,
@@ -67,7 +67,7 @@
     },
 
     "custom/gpuinfo": {
-        "exec": " gpuinfo.sh",
+        "exec": "~/.config/waybar/scripts/gpuinfo.sh",
         "return-type": "json",
         "format": "{}",
         "rotate": 0,
@@ -98,7 +98,7 @@
     },
 
     "custom/gpuinfo#intel": {
-        "exec": " gpuinfo.sh --use intel ",
+        "exec": "~/.config/waybar/scripts/gpuinfo.sh --use intel ",
         "return-type": "json",
         "format": "{}",
         "rotate": 0,
@@ -202,10 +202,10 @@
     "rotate": 0,
     "format-muted": "婢",
     "on-click": "pavucontrol -t 3",
-    "on-click-right": "volumecontrol.sh -s ''",
-    "on-click-middle": "volumecontrol.sh -o m",
-    "on-scroll-up": "volumecontrol.sh -o i",
-    "on-scroll-down": "volumecontrol.sh -o d",
+    "on-click-right": "~/.config/waybar/scripts/volumecontrol.sh -s ''",
+    "on-click-middle": "~/.config/waybar/scripts/volumecontrol.sh -o m",
+    "on-scroll-up": "~/.config/waybar/scripts/volumecontrol.sh -o i",
+    "on-scroll-down": "~/.config/waybar/scripts/volumecontrol.sh -o d",
     "tooltip-format": "{icon} {desc} // {volume}%",
     "scroll-step": 5,
     "format-icons": {
@@ -233,11 +233,11 @@
 },
 
     "custom/updates": {
-        "exec": "systemupdate.sh",
+        "exec": "~/.config/waybar/scripts/systemupdate.sh",
         "return-type": "json",
         "format": "{}",
         "rotate": 0,
-        "on-click": "hyprctl dispatch exec 'systemupdate.sh up'",
+        "on-click": "~/.config/waybar/scripts/systemupdate.sh up",
         "interval": 86400, // once every day
         "tooltip": true,
         "signal": 20,
@@ -291,7 +291,7 @@
         "format": "{}",
         "rotate": 0,
         "exec": "echo ; echo 󰆊 switch wallpaper",
-        "on-click": "wallpaper2.sh",
+        "on-click": "~/.config/waybar/scripts/wallpaper2.sh",
         "on-click-right": "~/.config/scripts/wallpaper2.sh",
         "on-click-middle": "sleep 0.1 && swwwallselect.sh",
         "interval" : 86400, // once every day

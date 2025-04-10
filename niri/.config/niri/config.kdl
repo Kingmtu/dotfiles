@@ -91,15 +91,15 @@ input {
   position x=1280 y=0
 }
 
-output "eDP-1" {
-  mode "1920x1080@144"
-  position x=0 y=180
-  scale 1
-}
 
 output "HDMI-A-1" {
-  mode "2560x1440@60"
-  position x=1920 y=0
+  mode "1366x768@59.790"
+  position x=1366 y=0
+  scale 0.85
+}
+output "DP-2" {
+  mode "1280x1024@75.025"
+  position x=1280 y=0
   scale 1
 }
 
@@ -236,16 +236,29 @@ layout {
 }
 // Example: enable rounded corners for all windows.
 window-rule {
-  geometry-corner-radius 5
+  geometry-corner-radius 10
   clip-to-geometry true
   block-out-from "screen-capture"
   // open-floating true
 }
 window-rule {
   match app-id="zathura"
-  opacity 0.95
+  opacity 0.80
 
 
+}
+output "HDMI-A-1" {
+    variable-refresh-rate on-demand=true
+
+}
+output "DP-2" {
+    variable-refresh-rate on-demand=true
+}
+
+window-rule {
+    match app-id="^mpv$"
+
+    variable-refresh-rate true
 }
 // Add lines like this to spawn processes at startup.
 // Note that running niri as a session supports xdg-desktop-autostart,
