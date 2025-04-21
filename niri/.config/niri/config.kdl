@@ -54,6 +54,10 @@ input {
   focus-follows-mouse max-scroll-amount="5%"
 }
 
+window-rule {
+    match is-active=false
+    opacity 0.9
+}
 // You can configure outputs by their name, which you can find
 // by running `niri msg outputs` while inside a niri instance.
 // The built-in laptop monitor is usually called "eDP-1".
@@ -95,7 +99,7 @@ input {
 output "HDMI-A-1" {
   mode "1366x768@59.790"
   position x=1366 y=0
-  scale 0.85
+  scale 0.8
 }
 output "DP-2" {
   mode "1280x1024@75.025"
@@ -123,7 +127,7 @@ layout {
         // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
   // Set gaps around windows in logical pixels.
-  gaps 5
+  gaps 2
 
   // When to center a column when changing focus, options are:
   // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -236,17 +240,19 @@ layout {
 }
 // Example: enable rounded corners for all windows.
 window-rule {
-  geometry-corner-radius 10
+  geometry-corner-radius 12
   clip-to-geometry true
   block-out-from "screen-capture"
   // open-floating true
 }
 window-rule {
   match app-id="zathura"
-  opacity 0.80
+  opacity 0.5
 
 
 }
+
+
 output "HDMI-A-1" {
     variable-refresh-rate on-demand=true
 
