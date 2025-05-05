@@ -1,11 +1,11 @@
 backend = "full"
-#palette = "dark16"
+palette = "dark16"
 #palette = "light16"
 #palette = "darkcomp16"
 #palette = "lightcomp16"
 #palette = "softdark16"
 #palette = "softlight16"
-palette = "dark"
+#palette = "dark"
 #palette = "light"
 
 color_space = "lchmixed"
@@ -63,5 +63,6 @@ alacritty.target = "~/.config/alacritty/colorschemes/wallust.toml"
 
 dunst.template = "dunstrc"
 dunst.target = "~/.config/dunst/dunstrc"
+
 
 

@@ -1,11 +1,7 @@
 * {
-    surface:     	{{background}}70;
-    surface-container-highest: 	{{background}}70;
-    surface-alpha : {{color1}};
-    on-surface:     	{{foreground}};
-    surface:       	{{background}}50;
-    tertiary:         	{{color2}};
-    primary:     {{foreground}};            
-    error:         	{{color1}};
-    Prompt:		{{background}};
+    bg:               {{color10}};
+    bg-alt:           {{color11}};
+    fg:               {{color3}};
+    fg-alt:           {{color7}};
+    accent:           {{color6}};
 }

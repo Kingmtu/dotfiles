@@ -1,0 +1,48 @@
+################
+### MONITORS ###
+################
+source = ~/.config/hypr/monitors.conf
+###################
+### MY PROGRAMS ###
+###################
+
+#################
+### AUTOSTART ###
+#################
+source = ~/.config/hypr/conf/autostart.conf
+#############################
+### ENVIRONMENT VARIABLES ###
+#############################
+source = ~/.config/hypr/conf/environment.conf
+
+#####################
+### LOOK AND FEEL ###
+#####################
+source = ~/.config/hypr/conf/decoration.conf
+source = ~/.config/hypr/conf/animation.conf
+#spurce = ~/.config/hypr/conf/decoration.conf
+#spurce = ~/.config/hypr/conf/decoration.conf
+
+source = ~/.config/hypr/colors.conf
+
+
+#############
+### INPUT ###
+#############
+source = ~/.config/hypr/conf/layout.conf
+###################
+### KEYBINDINGS ###
+###################
+source = ~/.config/hypr/keybindings.conf
+
+
+
+##############################
+### WINDOWS AND WORKSPACES ###
+##############################
+source = ~/.config/hypr/conf/windowrule.conf
+source = ~/.config/hypr/conf/workspace.conf
+source = ~/.config/hypr/conf/ml4w.conf
+source = ~/.config/hypr/conf/window.conf
+source = ~/.config/hypr/conf/cursor.conf
+

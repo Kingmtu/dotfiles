@@ -1,11 +1,7 @@
 * {
-    surface:     	#00020070;
-    surface-container-highest: 	#00020070;
-    surface-alpha : #75788A;
-    on-surface:     	#FBEBC0;
-    surface:       	#00020050;
-    tertiary:         	#667B9E;
-    primary:     #FBEBC0;            
-    error:         	#75788A;
-    Prompt:		#000200;
+    bg:               #A2837F;
+    bg-alt:           #888B71;
+    fg:               #818372;
+    fg-alt:           #F3EADF;
+    accent:           #B9AC9C;
 }
