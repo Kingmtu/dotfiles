@@ -1,0 +1,152 @@
+/*
+ * ROFI Theme v8 (Modular with Import)
+ *
+ * Imports colors from a central theme.rasi file.
+ * This file handles the structure and layout.
+ *
+ * Source: User Request
+ * User: AI Assistant
+ * Copyright: *!
+ */
+
+/*
+ * Import the color scheme from your theme file.
+ * Rofi will look for 'theme.rasi' in its standard theme directories.
+ */
+@import "theme.rasi"
+
+configuration {
+  font: "Noto Sans 12";
+  me-select-entry: "";
+  me-accept-entry: [ MousePrimary, MouseSecondary, MouseDPrimary ];
+  drun {
+    display-name: " "; // Magnifying glass icon
+  }
+
+  run {
+    display-name: " "; // Terminal icon
+  }
+
+  window {
+    display-name: " "; // Window icon
+  }
+
+  timeout {
+    delay: 10;
+    action: "kb-cancel";
+  }
+
+  filebrowser {
+      display-name: " "; // Folder icon
+  }
+}
+
+* {
+  /*
+   * Color variables (bg, fg, accent, etc.) are now
+   * inherited from the imported 'theme.rasi' file.
+   */
+
+  /* Base styles */
+  border:           0;
+  margin:           0;
+  padding:          0;
+  spacing:          0;
+
+  text-color:       @fg-alt;
+  background-color: @bg;
+
+  /* Make child elements transparent so parent backgrounds show through */
+  background-color: transparent;
+  text-color:       inherit;
+}
+
+window {
+  width:            700px;
+  background-color: @bg;
+  border-radius:    5px;
+  padding:          8px;
+}
+
+mainbox {
+  children: [ inputbar, listview ];
+  spacing:  8px;
+  padding:  8px;
+}
+
+inputbar {
+  children:         [ prompt, entry ];
+  background-color: @bg-alt;
+  text-color:       @fg-alt;
+  padding:          8px;
+  border-radius:    4px;
+}
+
+entry {
+  background-color: inherit;
+  text-color:       inherit;
+  padding:          7px 10px;
+  placeholder:      "Dive in...";
+  placeholder-color: @fg;
+  cursor:           text;
+  vertical-align:   0.5;
+}
+
+prompt {
+  enabled:          true;
+  background-color: inherit;
+  text-color:       inherit;
+  padding:          7px 10px;
+  font:             "Noto Sans 14";
+  vertical-align:   0.5;
+}
+
+listview {
+  lines:            8;
+  columns:          1;
+  fixed-height:     true;
+  spacing:          4px;
+  scrollbar:        false;
+  padding:          5px 0px;
+  background-color: transparent;
+  cycle:            true;
+  dynamic:          true;
+  layout:           vertical;
+}
+
+element {
+  children:         [ element-icon, element-text ];
+  padding:          6px 8px;
+  border-radius:    3px;
+  background-color: transparent;
+  cursor:           pointer;
+}
+
+element-icon {
+  size:             24px;
+  padding:          0px 10px 0px 0px;
+  cursor:           inherit;
+  vertical-align:   0.5;
+  background-color: transparent;
+}
+
+element-text {
+  text-color:       @fg;
+  vertical-align:   0.5;
+  background-color: transparent;
+  cursor:           inherit;
+  highlight:        @fg-alt;
+}
+
+/* Style for the selected element */
+element selected {
+  background-color: @bg-alt;
+  text-color:       @fg-alt;
+}
+
+/* Optional: Styles for Urgent/Active states using the accent color */
+element urgent, element active {
+    background-color: @accent;
+    text-color:       @fg-alt;
+    border-radius:    3px;
+}

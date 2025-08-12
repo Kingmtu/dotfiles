@@ -1,7 +1,7 @@
 * {
-    bg:               {{color10}};
-    bg-alt:           {{color11}};
-    fg:               {{color3}};
-    fg-alt:           {{color7}};
-    accent:           {{color6}};
+    bg:               {{background}};
+    bg-alt:           {{color3}};
+    fg:               {{foreground}};
+    fg-alt:           {{background}};
+    accent:           {{color13}};
 }

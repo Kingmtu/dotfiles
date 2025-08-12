@@ -8,7 +8,7 @@
 style_dir="$HOME/.config/rofi/launchers/styles"
 
 # Style-theme
-style_theme='whale'
+style_theme='whale2'
 
 # Run
 pkill rofi || true && rofi -show drun -theme ${style_dir}/${style_theme}.rasi

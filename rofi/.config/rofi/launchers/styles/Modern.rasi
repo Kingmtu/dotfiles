@@ -1,0 +1,160 @@
+/*
+ * rofi.rasi
+ *
+ * A modern and clean theme for Rofi.
+ *
+ * Inspired by various themes from the Rofi community.
+ */
+
+* {
+    /* Base Colors */
+    background:                  #1e1e2e;
+    background-alt:              #313244;
+    foreground:                  #cdd6f4;
+    selected:                    #89b4fa;
+    active:                      #a6e3a1;
+    urgent:                      #f38ba8;
+
+    /* Transparency */
+    background-color:            transparent;
+
+    /* Font */
+    font:                        "JetBrains Mono 12";
+
+    /* General Styling */
+    border:                      0;
+    margin:                      0;
+    padding:                     0;
+    spacing:                     0;
+}
+
+window {
+    background-color:            @background;
+    border:                      1px;
+    border-color:                @selected;
+    border-radius:               8px;
+    width:                       500px;
+    location:                    center;
+    anchor:                      center;
+    transparency:                "real";
+    children:                    [ mainbox ];
+}
+
+mainbox {
+    children:                    [ inputbar, listview ];
+}
+
+inputbar {
+    background-color:            @background-alt;
+    text-color:                  @foreground;
+    padding:                     8px;
+    border-radius:               8px 8px 0 0;
+    children:                    [ prompt, entry ];
+}
+
+prompt {
+    enabled:                     true;
+    padding:                     0 8px 0 0;
+    background-color:            inherit;
+    text-color:                  @active;
+}
+
+entry {
+    background-color:            inherit;
+    text-color:                  inherit;
+    placeholder:                 "Search...";
+    placeholder-color:           @foreground;
+}
+
+listview {
+    background-color:            @background;
+    columns:                     1;
+    lines:                       8;
+    spacing:                     4px;
+    padding:                     8px;
+    cycle:                       true;
+    dynamic:                     true;
+    layout:                      vertical;
+}
+
+element {
+    background-color:            @background;
+    text-color:                  @foreground;
+    orientation:                 horizontal;
+    border-radius:               4px;
+    padding:                     8px;
+}
+
+element-text {
+    background-color:            inherit;
+    text-color:                  inherit;
+    highlight:                   inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
+
+element.normal.normal {
+    background-color:            @background;
+    text-color:                  @foreground;
+}
+
+element.normal.urgent {
+    background-color:            @urgent;
+    text-color:                  @background;
+}
+
+element.normal.active {
+    background-color:            @active;
+    text-color:                  @background;
+}
+
+element.selected.normal {
+    background-color:            @selected;
+    text-color:                  @background;
+}
+
+element.selected.urgent {
+    background-color:            @urgent;
+    text-color:                  @background;
+}
+
+element.selected.active {
+    background-color:            @active;
+    text-color:                  @background;
+}
+
+element.alternate.normal {
+    background-color:            @background-alt;
+    text-color:                  @foreground;
+}
+
+element.alternate.urgent {
+    background-color:            @urgent;
+    text-color:                  @background;
+}
+
+element.alternate.active {
+    background-color:            @active;
+    text-color:                  @background;
+}
+
+scrollbar {
+    width:                       2px;
+    border:                      0;
+    handle-width:                8px;
+    padding:                     0;
+    handle-color:                @selected;
+    background-color:            @background-alt;
+}
+
+message {
+    border:                      1px;
+    border-color:                @selected;
+    border-radius:               8px;
+    padding:                     8px;
+    background-color:            @background-alt;
+}
+
+textbox {
+    text-color:                  @foreground;
+}
