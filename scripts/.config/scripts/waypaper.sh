@@ -1,3 +1,4 @@
 #!/bin/bash
 #matugen -v image "$wallpaper"
-wallust pywal -i "$wallpaper"
+#wallust pywal -i "$wallpaper"
+waypaper --random

@@ -1,30 +1,30 @@
-
 /**
- * Attribute: rofilaunch,launcher
- * Super launcher rofi
+ *
+ * Author : Aditya Shakya (adi1090x)
+ * Github : @adi1090x
+ * 
+ * Rofi Theme File
+ * Rofi Version: 1.7.3
  **/
-
 
 /*****----- Configuration -----*****/
 configuration {
-    modi:                       "drun";
+	modi:                       "drun";
     show-icons:                 true;
-    display-drun:                " ";
-    drun-display-format:        "{name}";
-    font:                        "JetBrainsMono Nerd Font 10";
+    display-drun:               " Applications";
+	drun-display-format:        "{name}";
 }
 
 /*****----- Global Properties -----*****/
-@theme "~/.config/theme.rasi"
-
+@import                          "shared/colors.rasi"
+@import                          "shared/fonts.rasi"
 /*****----- Main Window -----*****/
 window {
     transparency:                "real";
     location:                    center;
     anchor:                      center;
-    fullscreen:                  true;
-    width:                       100%;
-    height:                      100%;
+    fullscreen:                  false;
+    width:                       1000px;
     x-offset:                    0px;
     y-offset:                    0px;
 
@@ -32,21 +32,21 @@ window {
     margin:                      0px;
     padding:                     0px;
     border:                      0px solid;
-    border-radius:               0px;
-    border-color:                @select-fg;
-    background-color:            black / 10%;
+    border-radius:               20px;
+    border-color:                @selected;
+    background-color:            @background;
     cursor:                      "default";
 }
 
 /*****----- Main Box -----*****/
 mainbox {
     enabled:                     true;
-    spacing:                     100px;
-    margin:                      0px;
-    padding:                     100px 225px;
+    spacing:                     20px;
+    margin:                      40px;
+    padding:                     0px;
     border:                      0px solid;
     border-radius:               0px 0px 0px 0px;
-    border-color:                @select-fg;
+    border-color:                @selected;
     background-color:            transparent;
     children:                    [ "inputbar", "listview" ];
 }
@@ -54,43 +54,47 @@ mainbox {
 /*****----- Inputbar -----*****/
 inputbar {
     enabled:                     true;
-    spacing:                     10px;
-    margin:                      0% 28%;
-    padding:                     10px;
-    border:                      1px solid;
-    border-radius:               6px;
-    border-color:                white / 25%;
-    background-color:            white / 5%;
-    text-color:                  @main-fg;
-    children:                    [ "prompt", "entry" ];
+    spacing:                     0px;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      0px solid;
+    border-radius:               100%;
+    border-color:                @selected;
+    background-color:            @background-alt;
+    text-color:                  @foreground;
+    children:                    [ "prompt", "textbox-prompt-colon", "entry" ];
 }
 
 prompt {
     enabled:                     true;
-    background-color:            transparent;
-    text-color:                  inherit;
+    padding:                     15px;
+    border-radius:               100%;
+    background-color:            @selected;
+    text-color:                  @background;
 }
 textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
     str:                         "::";
-    background-color:            transparent;
+    padding:                     15px;
+    background-color:            inherit;
     text-color:                  inherit;
 }
 entry {
     enabled:                     true;
-    background-color:            transparent;
+    padding:                     15px 0px;
+    background-color:            inherit;
     text-color:                  inherit;
     cursor:                      text;
-    placeholder:                 "Search";
+    placeholder:                 "Search...";
     placeholder-color:           inherit;
 }
 
 /*****----- Listview -----*****/
 listview {
     enabled:                     true;
-    columns:                     7;
-    lines:                       5;
+    columns:                     6;
+    lines:                       3;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
@@ -99,52 +103,55 @@ listview {
     fixed-height:                true;
     fixed-columns:               true;
     
-    spacing:                     0px;
+    spacing:                     20px;
     margin:                      0px;
     padding:                     0px;
     border:                      0px solid;
     border-radius:               0px;
-    border-color:                @select-fg;
+    border-color:                @selected;
     background-color:            transparent;
-    text-color:                  @main-fg;
+    text-color:                  @foreground;
     cursor:                      "default";
 }
 scrollbar {
     handle-width:                5px ;
-    handle-color:                @select-fg;
+    handle-color:                @selected;
     border-radius:               0px;
-    background-color:            @main-br;
+    background-color:            @background-alt;
 }
 
 /*****----- Elements -----*****/
 element {
     enabled:                     true;
-    spacing:                     15px;
+    spacing:                     20px;
     margin:                      0px;
-    padding:                     35px 10px;
+    padding:                     0px;
     border:                      0px solid;
-    border-radius:               15px;
-    border-color:                @select-fg;
+    border-radius:               0px;
+    border-color:                @selected;
     background-color:            transparent;
-    text-color:                  @main-fg;
+    text-color:                  @foreground;
     orientation:                 vertical;
     cursor:                      pointer;
 }
 element normal.normal {
     background-color:            transparent;
-    text-color:                  @main-fg;
+    text-color:                  @foreground;
 }
 element selected.normal {
-    background-color:            white / 8%;
-    text-color:                  @main-fg;
+    background-color:            transparent;
+    text-color:                  @foreground;
 }
 element-icon {
-    background-color:            transparent;
+    padding:                     30px;
+    border-radius:               20px;
+    background-color:            @background-alt;
     text-color:                  inherit;
-    size:                        72px;
+    size:                        64px;
     cursor:                      inherit;
 }
 element-text {
+    padding:                     10px;
     background-color:            transparent;
     text-color:                  inherit;
     highlight:                   inherit;
@@ -152,20 +159,25 @@ element-text {
     vertical-align:              0.5;
     horizontal-align:            0.5;
 }
+element-text selected {
+    border-radius:               100%;
+    background-color:            @selected;
+    text-color:                  @background;
+}
 
 /*****----- Message -----*****/
 error-message {
-    padding:                     100px;
-    border:                      0px solid;
-    border-radius:               0px;
-    border-color:                @select-fg;
-    background-color:            black / 10%;
-    text-color:                  @main-fg;
+    padding:                     20px;
+    border:                      2px solid;
+    border-radius:               20px;
+    border-color:                @selected;
+    background-color:            @background;
+    text-color:                  @foreground;
 }
 textbox {
-    background-color:            transparent;
-    text-color:                  @main-fg;
+    background-color:            @background;
+    text-color:                  @foreground;
     vertical-align:              0.5;
-    horizontal-align:            0.5;
+    horizontal-align:            0.0;
     highlight:                   none;
 }

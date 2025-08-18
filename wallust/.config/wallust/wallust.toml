@@ -22,7 +22,7 @@ kitty.template = 'theme.conf'
 kitty.target = '~/.config/kitty/theme.conf'
 
 rofi.template = "theme.rasi"
-rofi.target = "~/.config/rofi/theme.rasi"
+rofi.target = "~/.config/rofi/colors/theme.rasi"
 
 swaync.template = "swaync.css"
 swaync.target = "~/.config/swaync/colors.css"
@@ -64,5 +64,5 @@ alacritty.target = "~/.config/alacritty/colorschemes/wallust.toml"
 dunst.template = "dunstrc"
 dunst.target = "~/.config/dunst/dunstrc"
 
-
+foot = { template = "foot.ini", target = "~/.config/foot/colors.ini" }
 

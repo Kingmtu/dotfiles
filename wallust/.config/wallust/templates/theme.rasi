@@ -1,7 +1,8 @@
 * {
-    bg:               {{background}};
-    bg-alt:           {{color3}};
-    fg:               {{foreground}};
-    fg-alt:           {{background}};
-    accent:           {{color13}};
+    background:               {{background}};
+    background-alt:           {{color8}};
+    foreground:               {{foreground}};
+    selected:                 {{color2}};
+    active:                   {{color13}};
+    urgent:                   {{color10}};
 }

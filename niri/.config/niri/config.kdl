@@ -99,7 +99,7 @@ window-rule {
 output "HDMI-A-1" {
   mode "1366x768@59.790"
   position x=1366 y=0
-  scale 0.8
+  scale 1
 }
 output "DP-2" {
   mode "1280x1024@75.025"
@@ -384,7 +384,7 @@ binds {
 
   //Mod+T { spawn "alacritty"; }
   Mod+T { spawn "thorium-browser"; }
-  Mod+Shift+W { spawn "~/.config/scripts/wallpaper2.sh"; }
+  Mod+Shift+W { spawn "~/.config/scripts/waypaper.sh"; }
   Mod+Return { spawn "kitty"; }
   Mod+W { spawn "waypaper"; }
   Mod+B { spawn "~/.config/scripts/waybar.sh";}
