@@ -34,6 +34,7 @@ set -x PATH $PATH ~/.local/bin/go/bin/
 set -x PATH $PATH ~/.cargo/bin
 alias update='sudo pacman -Syu'
 alias install='sudo pacman -S'
+alias p='pacseek'
 alias uninstall='sudo pacman -Rns'
 alias play='ncmpcpp'
 alias la='exa -a --color=always --group-directories-first' # all files and dirs
