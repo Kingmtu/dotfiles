@@ -288,7 +288,7 @@
     },
 
     "custom/wallchange": {
-        "format": "{}",
+        "format": "󰆊{}",
         "rotate": 0,
         "exec": "echo ; echo 󰆊 switch wallpaper",
         "on-click": "~/.config/waybar/scripts/wallpaper2.sh",

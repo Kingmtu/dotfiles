@@ -1,6 +1,5 @@
 test ! -e "$HOME/.x-cmd.root/local/data/fish/rc.fish" || source "$HOME/.x-cmd.root/local/data/fish/rc.fish" # boot up x-cmd.
 #source ~/.config/lscolors.csh
-#Set up fzf key bindings
 
 #neofetch --off --block_range 0 7
 #neofetch
@@ -16,8 +15,8 @@ alias fox='catnip -c ~/.config/catnip/config_fox.toml'
 alias fox2='catnip -c ~/.config/catnip/config_fox2.toml'
 alias fox3='catnip -c ~/.config/catnip/config_fox3.toml'
 
-alias ls='lsd -a'
-alias ll='lsd -ahl'
+#alias ls='lsd -a'
+#alias ll='lsd -ahl'
 alias icat='kitten icat'
 alias cat='bat'
 alias ls='exa --icons -a'
@@ -34,6 +33,8 @@ set -x PATH $PATH ~/.local/bin/eww
 set -x PATH $PATH ~/.local/bin/go/bin/
 set -x PATH $PATH ~/.cargo/bin
 alias update='sudo pacman -Syu'
+alias install='sudo pacman -S'
+alias uninstall='sudo pacman -Rns'
 alias play='ncmpcpp'
 alias la='exa -a --color=always --group-directories-first' # all files and dirs
 alias pacmandir='pacman -Ql' #To retrieve a list of the files installed by a package
