@@ -27,7 +27,7 @@ randomPicture="${PICS[$((randomNumber % ${#PICS[@]}))]}"
 randomChoice="[${#PICS[@]}] Random"
 
 # Rofi command
-rofiCommand="rofi -show -dmenu -theme ${themesDir}/style-10.rasi"
+rofiCommand="rofi -show -dmenu -theme ${themesDir}/style-4.rasi"
 
 # Execute command according the wallpaper manager
 executeCommand() {
