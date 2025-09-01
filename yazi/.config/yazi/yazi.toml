@@ -19,20 +19,20 @@ title_format   = "Yazi: {cwd}"
 [preview]
 wrap            = "no"
 tab_size        = 2
-max_width       = 600
-max_height      = 900
+max_width       = 1200
+max_height      = 1100
 cache_dir       = ""
 image_delay     = 30
 image_filter    = "triangle"
 image_quality   = 75
-sixel_fraction  = 15
 ueberzug_scale  = 1
 ueberzug_offset = [ 0, 0, 0, 0 ]
 
 [opener]
 edit = [
-  { run = 'nvim "$@"', block = true },
-
+	{ run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+	{ run = 'code %*',    orphan = true, desc = "code",           for = "windows" },
+	{ run = 'code -w %*', block = true,  desc = "code (block)",   for = "windows" },
 ]
 open = [
 	{ run = 'xdg-open "$1"',                desc = "Open", for = "linux" },
@@ -45,11 +45,14 @@ reveal = [
 	{ run = 'open -R "$1"',                         desc = "Reveal", for = "macos" },
 	{ run = 'explorer /select,"%1"', orphan = true, desc = "Reveal", for = "windows" },
 	{ run = 'termux-open "$(dirname "$1")"',        desc = "Reveal", for = "android" },
-	{ run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
+	{ run = '''clear; exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
 ]
 extract = [
-	{ run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
-	{ run = 'ya pub extract --list %*',   desc = "Extract here", for = "windows" },
+  #{ run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
+  #{ run = 'ya pub extract --list %*',   desc = "Extract here", for = "windows" },
+
+  { run = 'ouch d -y %*', desc = "Extract here with ouch", for = "windows" },
+	{ run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
 ]
 play = [
 	{ run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
@@ -83,7 +86,7 @@ micro_workers    = 10
 macro_workers    = 10
 bizarre_retry    = 3
 image_alloc      = 536870912  # 512MB
-image_bound      = [ 0, 0 ]
+image_bound      = [ 5000, 5000 ]
 suppress_preload = false
 
 [plugin]
@@ -97,7 +100,8 @@ spotters = [
 	{ mime = "text/*", run = "code" },
 	{ mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
 	# Image
-	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/{avif,hei?,jxl}", run = "magick" },
+	{ mime = "image/svg+xml", run = "svg" },
 	{ mime = "image/*", run = "image" },
 	# Video
 	{ mime = "video/*", run = "video" },
@@ -106,7 +110,8 @@ spotters = [
 ]
 preloaders = [
 	# Image
-	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/{avif,hei?,jxl}", run = "magick" },
+	{ mime = "image/svg+xml", run = "svg" },
 	{ mime = "image/*", run = "image" },
 	# Video
 	{ mime = "video/*", run = "video" },
@@ -114,17 +119,30 @@ preloaders = [
 	{ mime = "application/pdf", run = "pdf" },
 	# Font
 	{ mime = "font/*", run = "font" },
-	{ mime = "application/ms-opentype", run = "font" },
+  # Archive previewer
+	{ mime = "application/*zip",            run = "ouch" },
+	{ mime = "application/x-tar",           run = "ouch" },
+	{ mime = "application/x-bzip2",         run = "ouch" },
+	{ mime = "application/x-7z-compressed", run = "ouch" },
+	{ mime = "application/x-rar",           run = "ouch" },
+	{ mime = "application/vnd.rar",         run = "ouch" },
+	{ mime = "application/x-xz",            run = "ouch" },
+	{ mime = "application/xz",              run = "ouch" },
+	{ mime = "application/x-zstd",          run = "ouch" },
+	{ mime = "application/zstd",            run = "ouch" },
+	{ mime = "application/java-archive",    run = "ouch" }, 
+  { mime = "application/ms-opentype",     run = "font" },
 ]
 previewers = [
-	{ name = "*/", run = "folder", sync = true },
+	{ name = "*/", run = "folder" },
 	# Code
 	{ mime = "text/*", run = "code" },
 	{ mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
 	# JSON
 	{ mime = "application/{json,ndjson}", run = "json" },
 	# Image
-	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/{avif,hei?,jxl}", run = "magick" },
+	{ mime = "image/svg+xml", run = "svg" },
 	{ mime = "image/*", run = "image" },
 	# Video
 	{ mime = "video/*", run = "video" },
@@ -146,7 +164,14 @@ previewers = [
 	# Fallback
 	{ name = "*", run = "file" },
 ]
-
+prepend_previewers = [
+    { name = "*.csv", run = "rich-preview"}, # for csv files
+    { name = "*.md", run = "rich-preview" }, # for markdown (.md) files
+    { name = "*.rst", run = "rich-preview"}, # for restructured text (.rst) files
+    { name = "*.ipynb", run = "rich-preview"}, # for jupyter notebooks (.ipynb)
+    { name = "*.json", run = "rich-preview"}, # for json (.json) files
+#    { name = "*.lang_type", run = "rich-preview"} # for particular language files eg. .py, .go., .lua, etc.
+]
 [input]
 cursor_blink = false
 
@@ -218,12 +243,3 @@ sort_by      	 = "none"
 sort_sensitive = false
 sort_reverse 	 = false
 sort_translit  = false
-[[plugin.prepend_fetchers]]
-id   = "git"
-name = "*"
-run  = "git"
-
-[[plugin.prepend_fetchers]]
-id   = "git"
-name = "*/"
-run  = "git"

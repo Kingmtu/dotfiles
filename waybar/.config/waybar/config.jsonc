@@ -321,10 +321,10 @@
     },
 
     "custom/cliphist": {
-        "format": "{}",
+        "format": "{}",
         "rotate": 0,
         "exec": "echo ; echo 󰅇 clipboard history",
-        "on-click": "sleep 0.1 && cliphist.sh -c",
+        "on-click": "swaync-client -t ",
         "on-click-right": "sleep 0.1 && cliphist.sh -d",
         "on-click-middle": "sleep 0.1 && cliphist.sh -w",
         "interval" : 86400, // once every day

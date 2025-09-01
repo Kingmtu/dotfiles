@@ -27,6 +27,7 @@ alias tr3='exa --tree --level=3'
 
 #alias c="clear; neofetch --block_range 0 7"
 #export PATH="$"PATH":/home/bluebyt/.local/bin"
+export EDITOR="nvim"
 set -x PATH $PATH ~/.bin
 set -x PATH $PATH ~/.local/bin
 set -x PATH $PATH ~/.local/bin/eww
@@ -53,11 +54,10 @@ zoxide init fish | source
 zoxide init --cmd cd fish | source
 fzf --fish | source
 #~/.x-cmd.root/bin/x fish --setup
-
 function y
     set tmp (mktemp -t "yazi-cwd.XXXXXX")
     yazi $argv --cwd-file="$tmp"
-    if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+    if read -z cwd <"$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
         builtin cd -- "$cwd"
     end
     rm -f -- "$tmp"
