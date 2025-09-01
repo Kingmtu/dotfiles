@@ -1,0 +1,26 @@
+theme = "catppuccin_mocha"
+[editor]
+line-number = "relative"
+bufferline = "always"
+true-color = true
+color-modes = true
+mouse = true
+auto-completion = true
+[editor.indent-guides]
+render = true
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
+[editor.soft-wrap]
+enable = true
+max-wrap = 80
+[keys.normal]
+C-y = [
+  ':sh rm -f /tmp/unique-file',
+  ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
+  ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-file}',
+  ':redraw',
+]
+"W" = ":wq"

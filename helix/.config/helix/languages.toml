@@ -1,0 +1,11 @@
+[[language]]
+name = "markdown"
+auto-format = true
+
+[language.formatter]
+command = "prettier"
+args = ["--parser", "markdown"]
+
+[language.formatter.pre-format-editor-commands]
+"set_selections" = ["capture_editor_selections", "collapse_selection"]
+"restore_selections" = ["restore_editor_selections"]
