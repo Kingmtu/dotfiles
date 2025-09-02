@@ -13,8 +13,9 @@ normal = "block"
 insert = "bar"
 select = "underline"
 [editor.soft-wrap]
+wrap-indicator = ""
 enable = true
-max-wrap = 80
+#max-wrap = 80
 [keys.normal]
 C-y = [
   ':sh rm -f /tmp/unique-file',
@@ -24,3 +25,7 @@ C-y = [
   ':redraw',
 ]
 "W" = ":wq"
+[keys.normal.space.t]
+s = ":toggle soft-wrap.enable"
+
+"F6" = "@:sh pandoc --resource-path <C-r>%<C-w> --self-contained --metadata title='Preview' <C-r>% -o /tmp/md-preview.html && xdg-open /tmp/md-preview.html<ret>"
