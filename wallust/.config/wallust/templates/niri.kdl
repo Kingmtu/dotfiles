@@ -1,0 +1,10 @@
+layout {
+    border {
+        active-color "rgb({{ c.color4.rgb.0 }}, {{ c.color4.rgb.1 }}, {{ c.color4.rgb.2 }})"
+        inactive-color "rgb({{ c.color8.rgb.0 }}, {{ c.color8.rgb.1 }}, {{ c.color8.rgb.2 }})"
+    }
+    focus-ring {
+        active-color "rgb({{ c.color4.rgb.0 }}, {{ c.color4.rgb.1 }}, {{ c.color4.rgb.2 }})"
+        inactive-color "rgb({{ c.color8.rgb.0 }}, {{ c.color8.rgb.1 }}, {{ c.color8.rgb.2 }})"
+    }
+}

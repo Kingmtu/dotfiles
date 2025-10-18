@@ -1,6 +1,5 @@
 test ! -e "$HOME/.x-cmd.root/local/data/fish/rc.fish" || source "$HOME/.x-cmd.root/local/data/fish/rc.fish" # boot up x-cmd.
 #source ~/.config/lscolors.csh
-
 #neofetch --off --block_range 0 7
 #neofetch
 #neofetch --block_range 0 7
@@ -49,7 +48,8 @@ alias clean='sudo pacman -Sc' #removing old packages from cache
 #alias extract='for i in *.rar; do unrar x -o+ "$i"; end' 
 #. ~/.config/fish/functions/noti.fish
 
-set -x STARSHIP_CONFIG ~/.config/starship/nerd-font-symbols.toml
+set -x STARSHIP_CONFIG ~/.config/starship/starship-minimal.toml
+
 starship init fish | source
 zoxide init fish | source
 zoxide init --cmd cd fish | source
