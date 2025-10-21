@@ -29,6 +29,7 @@ spawn-at-startup "/usr/lib/xdg-desktop-portal-gnome"  // XDG portals for desktop
 spawn-at-startup "xwayland-satellite"  // XWayland support.
 spawn-at-startup "swaync"  // Notification center.
 spawn-at-startup "swww-daemon"  // Wallpaper daemon.
+spawn-at-startup "swww" "img" "~/Pictures/wallpapers/anime/a_bird_on_a_branch.png"
 spawn-at-startup "swww restore"  // Restore wallpaper.
 spawn-at-startup "waybar"  // Status bar.
 spawn-at-startup "mako"  // Notification daemon.
@@ -129,6 +130,11 @@ layer-rule {
     match at-startup=true
     opacity 0.9  // Semi-transparent.
 }
+overview {
+  backdrop-color "transparent"
+  //wallpaper-in-backdrop stationary
+}
+
 
 // === Window Rules ===
 // Rules for XWayland/Wayland windows (docs: Configuration: Window-Rules).
