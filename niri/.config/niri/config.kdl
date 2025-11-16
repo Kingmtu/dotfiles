@@ -27,9 +27,7 @@ spawn-at-startup "copyq" "--start-server"  // Clipboard manager server.
 spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"  // Update env for portals.
 spawn-at-startup "/usr/lib/xdg-desktop-portal-gnome"  // XDG portals for desktop integration.
 spawn-at-startup "xwayland-satellite"  // XWayland support.
-spawn-at-startup "swaync"  // Notification center.
 spawn-at-startup "swww-daemon"  // Wallpaper daemon.
-spawn-at-startup "swww" "img" "~/Pictures/wallpapers/anime/a_bird_on_a_branch.png"
 spawn-at-startup "swww restore"  // Restore wallpaper.
 spawn-at-startup "waybar"  // Status bar.
 spawn-at-startup "mako"  // Notification daemon.
@@ -170,7 +168,7 @@ layout {
     }
     default-column-width {}  // Auto or last preset.
     focus-ring {
-        width 2  // Focus ring width around active window.
+        width 4  // Focus ring width around active window.
         active-gradient from="#87CEEB" to="#4682B4" angle=45 relative-to="workspace-view"  // Sky blue gradient for active window.
         inactive-gradient from="#B0C4DE" to="#D3DCE6" angle=45 relative-to="workspace-view"  // Subtle blue-gray for inactive windows.    border {
     }
@@ -336,7 +334,8 @@ binds {
     Mod+Shift+Equal { set-window-height "+10%"; }  // Expand height.
 
     // --- Screenshots ---
-    Print { screenshot; }  // Full screenshot.
+    Print  { screenshot; }  // Full screenshot.
+    Ctrl+P { screenshot; }  // Full screenshot.
     Alt+Print { screenshot-screen; }  // Screen screenshot.
     Shift+Print { screenshot-window; }  // Window screenshot.
 }
