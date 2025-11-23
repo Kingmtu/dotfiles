@@ -210,11 +210,11 @@ binds {
     Mod+y { spawn "~/.config/scripts/yazi.sh"; }  // File manager.
     Mod+T { spawn "thorium-browser"; }  // Browser.
     Mod+Shift+W { spawn "~/.config/scripts/wallpaperSelect.sh"; }  // Wallpaper selector.
-    Mod+Return { spawn "kitty"; }  // Terminal.
+    Mod+Return { spawn "foot"; }  // Terminal.
     Mod+W { spawn "waypaper" " --next"; }  // Next wallpaper.
     Mod+B { spawn "~/.config/scripts/waybar.sh"; }  // Waybar script.
     Mod+Space { spawn "~/.config/rofi/launchers/type-1/launcher.sh"; }  // Rofi launcher.
-    Mod+Shift+Return { spawn "foot"; }  // Alternative terminal.
+    Mod+Shift+Return { spawn "kitty"; }  // Alternative terminal.
     Mod+Shift+T { spawn "thunar"; }  // Radio app.
     Mod+Shift+P { spawn "librewolf"; }  // Privacy browser.
     Mod+Shift+L { spawn "lutris"; }  // Game launcher.
