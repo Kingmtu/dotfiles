@@ -48,7 +48,7 @@ alias clean='sudo pacman -Sc' #removing old packages from cache
 #alias extract='for i in *.rar; do unrar x -o+ "$i"; end' 
 #. ~/.config/fish/functions/noti.fish
 
-set -x STARSHIP_CONFIG ~/.config/starship/starship-minimal.toml
+set -x STARSHIP_CONFIG ~/.config/starship/nerd-font-symbols.toml
 
 starship init fish | source
 zoxide init fish | source
