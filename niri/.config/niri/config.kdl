@@ -19,6 +19,12 @@ environment {
     QT_STYLE_OVERRIDE "kvantum"  // Qt style.
     QT_WAYLAND_DECORATION "kvantum"  // Qt decoration style.
 }
+/// Swayidle
+spawn-at-startup "swayidle" "-w" \
+    "timeout" "300" "swaylock -f" \
+    "timeout" "600" "niri msg action power-off-monitors" \
+    "before-sleep" "swaylock -f"
+
 
 // === Startup Processes ===
 // Spawn processes at startup in order (docs: Configuration: Miscellaneous).
@@ -30,11 +36,12 @@ spawn-at-startup "xwayland-satellite"  // XWayland support.
 spawn-at-startup "swww-daemon"  // Wallpaper daemon.
 spawn-at-startup "swww restore"  // Restore wallpaper.
 spawn-at-startup "waybar"  // Status bar.
-spawn-at-startup "mako"  // Notification daemon.
+spawn-at-startup "dunst"  // Notification daemon.
 spawn-at-startup "bluetoothctl" "power" "on"  // Enable Bluetooth.
 spawn-at-startup "blueman-applet"  // Bluetooth applet.
 spawn-at-startup "nm-applet" "--indicator"  // Network applet.
-
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
 // === Screenshot Settings ===
 // Path template for screenshots using strftime format (docs: Configuration: Miscellaneous).
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
@@ -168,6 +175,7 @@ layout {
     }
     default-column-width {}  // Auto or last preset.
     focus-ring {
+        off
         width 4  // Focus ring width around active window.
         active-gradient from="#87CEEB" to="#4682B4" angle=45 relative-to="workspace-view"  // Sky blue gradient for active window.
         inactive-gradient from="#B0C4DE" to="#D3DCE6" angle=45 relative-to="workspace-view"  // Subtle blue-gray for inactive windows.    border {
@@ -217,15 +225,14 @@ binds {
     Mod+Shift+Return { spawn "kitty"; }  // Alternative terminal.
     Mod+Shift+T { spawn "thunar"; }  // Radio app.
     Mod+Shift+P { spawn "librewolf"; }  // Privacy browser.
-    Mod+Shift+L { spawn "lutris"; }  // Game launcher.
     Mod+Shift+C { spawn "qalculate-gtk"; }  // Calculator.
     Mod+G { spawn "hyprpicker" "-ra"; }  // Color picker.
     Mod+O { spawn "obsidian"; }  // Note-taking.
     Mod+N { spawn "pavucontrol"; }  // Audio control.
     Mod+Shift+N { spawn "blueman-manager"; }  // Bluetooth manager.
-    Mod+L { spawn "wlogout"; }  // Logout menu.
+    Mod+Shift+L { spawn "wlogout"; }  // Logout menu.
     Mod+Shift+O { toggle-window-rule-opacity; }  // Toggle opacity rule.
-
+    Mod+L { spawn "swaylock"; }
     // --- Media and Volume Controls ---
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
