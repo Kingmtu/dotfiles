@@ -1,113 +1,83 @@
 #!/usr/bin/env bash
-## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
-# This script for selecting wallpapers (SUPER W)
 
 # Wallpapers Path
 wallpaperDir="$HOME/Pictures/wallpapers"
-themesDir="$HOME/.config/rofi/launchers/type-3/"
+themesDir="$HOME/.config/rofi/launchers/type-3"
 
 # Transition config
 FPS=60
 TYPE="any"
 DURATION=3
 BEZIER="0.4,0.2,0.4,1.0"
-SWWW_PARAMS="--transition-fps ${FPS} --transition-type ${TYPE} --transition-duration ${DURATION} --transition-bezier ${BEZIER}"
+AWWW_PARAMS="--transition-fps ${FPS} --transition-type ${TYPE} --transition-duration ${DURATION} --transition-bezier ${BEZIER}"
 
-# Check if swaybg is running
-if pidof swaybg >/dev/null; then
-  pkill swaybg
+# 1. Ensure wallpaper directory exists
+if [ ! -d "$wallpaperDir" ]; then
+  notify-send "Error" "Wallpaper directory not found: $wallpaperDir"
+  exit 1
 fi
 
-# Retrieve image files as a list
-PICS=($(find -L "${wallpaperDir}" -type f \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png -o -iname \*.gif \) | sort))
+# 2. Start the daemon if it's not running (Replaces the broken 'awww init')
+if ! pgrep -x "awww-daemon" >/dev/null; then
+  awww-daemon &
+  sleep 0.5 # Give the socket a moment to initialize
+fi
 
-# Use date variable to increase randomness
-randomNumber=$((($(date +%s) + RANDOM) + $$))
-randomPicture="${PICS[$((randomNumber % ${#PICS[@]}))]}"
+# 3. Retrieve image files (Handles spaces in filenames)
+mapfile -t PICS < <(find -L "$wallpaperDir" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) | sort)
+
 randomChoice="[${#PICS[@]}] Random"
-
-# Rofi command
+randomPicture="${PICS[$((RANDOM % ${#PICS[@]}))]}"
 rofiCommand="rofi -show -dmenu -theme ${themesDir}/style-4.rasi"
 
-# Execute command according the wallpaper manager
+# Function to apply wallpaper
 executeCommand() {
+  local pic="$1"
 
-  if command -v swww &>/dev/null; then
-    swww img "$1" ${SWWW_PARAMS}
-
+  # Try awww first, fallback to swaybg
+  if command -v awww &>/dev/null; then
+    awww img "$pic" ${AWWW_PARAMS}
   elif command -v swaybg &>/dev/null; then
-    swaybg -i "$1" &
-
-  else
-    echo "Neither swww nor swaybg are installed."
-    exit 1
+    pkill swaybg
+    swaybg -i "$pic" &
   fi
 
-  ln -sf "$1" "$HOME/.current_wallpaper"
-  wallust run "$HOME/.current_wallpaper"
+  # Update symlink and colors
+  ln -sf "$pic" "$HOME/.current_wallpaper"
+  if command -v wallust &>/dev/null; then
+    wallust run "$HOME/.current_wallpaper"
+  fi
 }
 
-# Show the images
+# Rofi Menu Generator
 menu() {
-
-  printf "$randomChoice\n"
-
-  for i in "${!PICS[@]}"; do
-
-    # If not *.gif, display
-    if [[ -z $(echo "${PICS[$i]}" | grep .gif$) ]]; then
-      printf "$(basename "${PICS[$i]}" | cut -d. -f1)\x00icon\x1f${PICS[$i]}\n"
-    else
-      # Displaying .gif to indicate animated images
-      printf "$(basename "${PICS[$i]}")\n"
-    fi
+  echo "$randomChoice"
+  for file in "${PICS[@]}"; do
+    printf "%s\x00icon\x1f%s\n" "$(basename "$file")" "$file"
   done
 }
 
-# If swww exists, start it
-if command -v swww &>/dev/null; then
-  swww query || swww init
-fi
-
-# Execution
+# Execution Logic
 main() {
-  choice=$(menu | ${rofiCommand})
-
-  # No choice case
-  if [[ -z $choice ]]; then
+  if pidof rofi >/dev/null; then
+    pkill rofi
     exit 0
   fi
 
-  # Random choice case
-  if [ "$choice" = "$randomChoice" ]; then
-    executeCommand "${randomPicture}"
-    return 0
+  choice=$(menu | ${rofiCommand})
+  [[ -z "$choice" ]] && exit 0
+
+  if [[ "$choice" == "$randomChoice" ]]; then
+    executeCommand "$randomPicture"
+    exit 0
   fi
 
-  # Find the selected file
   for file in "${PICS[@]}"; do
-    # Getting the file
-    if [[ "$(basename "$file" | cut -d. -f1)" = "$choice" ]]; then
-      selectedFile="$file"
-      break
+    if [[ "$(basename "$file")" == "$choice" ]]; then
+      executeCommand "$file"
+      exit 0
     fi
   done
-
-  # Check the file and execute
-  if [[ -n "$selectedFile" ]]; then
-    executeCommand "${selectedFile}"
-    return 0
-  else
-    echo "Image not found."
-    exit 1
-  fi
-
 }
-
-# Check if rofi is already running
-if pidof rofi >/dev/null; then
-  pkill rofi
-  exit 0
-fi
 
 main

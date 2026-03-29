@@ -1,26 +1,26 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "8f1d971"
+rev = "03cdd4b"
 hash = "8a7c58225816a163a6e8730c0adafbc8"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "8f1d971"
-hash = "4fccaaf10c36dc2466e2438a386ff017"
+rev = "03cdd4b"
+hash = "e2d4bfccf31e5ab05f46fee4797c5215"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "8f1d971"
+rev = "03cdd4b"
 hash = "56fdabc96fc1f4d53c96eb884b02a5be"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
-rev = "8f1d971"
-hash = "bcda8eeb3f4013bae156aecabfc745e8"
+rev = "03cdd4b"
+hash = "407d19bc4fb46eff5fa8ff8337644847"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "8f1d971"
+rev = "03cdd4b"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
@@ -30,8 +30,8 @@ hash = "ed3363e256e210593f0f8e4cec3e36a9"
 
 [[plugin.deps]]
 use = "Lil-Dank/lazygit"
-rev = "8f37dc5"
-hash = "ee71543790f0ce3951161045a3787abd"
+rev = "0e56060"
+hash = "ab2e66065a94cca4886b303518e44bd8"
 
 [[plugin.deps]]
 use = "imsi32/yatline"

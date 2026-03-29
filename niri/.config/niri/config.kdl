@@ -21,7 +21,7 @@ environment {
 }
 /// Swayidle
 spawn-at-startup "swayidle" "-w" \
-    "timeout" "300" "swaylock -f" \
+    "timeout" "1200" "swaylock -f" \
     "timeout" "600" "niri msg action power-off-monitors" \
     "before-sleep" "swaylock -f"
 
@@ -33,8 +33,8 @@ spawn-at-startup "copyq" "--start-server"  // Clipboard manager server.
 spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"  // Update env for portals.
 spawn-at-startup "/usr/lib/xdg-desktop-portal-gnome"  // XDG portals for desktop integration.
 spawn-at-startup "xwayland-satellite"  // XWayland support.
-spawn-at-startup "swww-daemon"  // Wallpaper daemon.
-spawn-at-startup "swww restore"  // Restore wallpaper.
+spawn-at-startup "awww-daemon"  // Wallpaper daemon.
+spawn-at-startup "awww restore"  // Restore wallpaper.
 spawn-at-startup "waybar"  // Status bar.
 spawn-at-startup "dunst"  // Notification daemon.
 spawn-at-startup "bluetoothctl" "power" "on"  // Enable Bluetooth.
@@ -127,7 +127,7 @@ layer-rule {
     baba-is-float false  // Disable floating animation.
 }
 layer-rule {
-    match namespace="^swww$"
+    match namespace="^awww$"
     place-within-backdrop true  // Wallpaper in backdrop.
 }
 layer-rule {
@@ -218,11 +218,11 @@ binds {
     Mod+y { spawn "~/.config/scripts/yazi.sh"; }  // File manager.
     Mod+T { spawn "thorium-browser"; }  // Browser.
     Mod+Shift+W { spawn "~/.config/scripts/wallpaperSelect.sh"; }  // Wallpaper selector.
-    Mod+Return { spawn "foot"; }  // Terminal.
+    Mod+Return { spawn "kitty"; }  // Terminal.
     Mod+W { spawn "waypaper" " --next"; }  // Next wallpaper.
     Mod+B { spawn "~/.config/scripts/waybar.sh"; }  // Waybar script.
     Mod+Space { spawn "~/.config/rofi/launchers/type-1/launcher.sh"; }  // Rofi launcher.
-    Mod+Shift+Return { spawn "kitty"; }  // Alternative terminal.
+    Mod+Shift+Return { spawn "foot"; }  // Alternative terminal.
     Mod+Shift+T { spawn "thunar"; }  // Radio app.
     Mod+Shift+P { spawn "librewolf"; }  // Privacy browser.
     Mod+Shift+C { spawn "qalculate-gtk"; }  // Calculator.
