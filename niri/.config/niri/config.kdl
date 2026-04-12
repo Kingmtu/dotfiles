@@ -112,7 +112,7 @@ output "DP-2" {
 layer-rule {
     match namespace="waybar"
     match at-startup=true
-    opacity 0.5  // Semi-transparent.
+    // opacity 0.5  // Semi-transparent.
     block-out-from "screencast"  // Exclude from screencasts.
     shadow {
         on  // Enable shadow.
@@ -122,7 +122,7 @@ layer-rule {
         draw-behind-window true  // Behind surface.
         color "#00000064"  // Color with alpha.
     }
-    geometry-corner-radius 12  // Rounded corners.
+    geometry-corner-radius 5  // Rounded corners.
     place-within-backdrop true  // In overview backdrop.
     baba-is-float false  // Disable floating animation.
 }
