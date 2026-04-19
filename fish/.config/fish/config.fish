@@ -80,3 +80,6 @@ complete --command __zoxide_z --no-files --arguments '(__my_zoxide_z_complete)'
 
 set plugins https://github.com/kidonng/plug.fish
 source (path filter $__fish_user_data_dir/plugins/plug.fish/conf.d/plugin_load.fish || curl https://raw.githubusercontent.com/kidonng/plug.fish/v3/conf.d/plugin_load.fish | psub)
+
+# opencode
+fish_add_path /home/jarvis/.opencode/bin

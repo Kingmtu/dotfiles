@@ -29,11 +29,11 @@ spawn-at-startup "swayidle" "-w" \
 // === Startup Processes ===
 // Spawn processes at startup in order (docs: Configuration: Miscellaneous).
 // Use for daemons, applets, and integrations. Runs before the compositor is ready.
-spawn-at-startup "copyq" "--start-server"  // Clipboard manager server.
 spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"  // Update env for portals.
 spawn-at-startup "/usr/lib/xdg-desktop-portal-gnome"  // XDG portals for desktop integration.
 spawn-at-startup "xwayland-satellite"  // XWayland support.
 spawn-at-startup "awww-daemon"  // Wallpaper daemon.
+spawn-at-startup "ollama serve"  // Wallpaper daemon.
 spawn-at-startup "awww restore"  // Restore wallpaper.
 spawn-at-startup "waybar"  // Status bar.
 spawn-at-startup "dunst"  // Notification daemon.
