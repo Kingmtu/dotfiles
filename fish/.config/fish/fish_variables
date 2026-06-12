@@ -2,4 +2,4 @@
 # VERSION: 3.0
 SETUVAR __fish_initialized:4300
 SETUVAR fish_greeting:
-SETUVAR fish_user_paths:/home/jarvis/\x2eopencode/bin
+SETUVAR fish_user_paths:/home/jarvis/\x2ecargo/bin\x1e/home/jarvis/\x2elocal/bin\x1e/home/jarvis/\x2eopencode/bin

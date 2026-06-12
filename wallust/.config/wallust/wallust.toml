@@ -1,14 +1,14 @@
-backend = "full"
+backend = "thumb"
 palette = "dark16"
 #palette = "light16"
 #palette = "darkcomp16"
 #palette = "lightcomp16"
 #palette = "softdark16"
 #palette = "softlight16"
-#palette = "dark"
 #palette = "light"
 
-color_space = "lchmixed"
+
+#color_space = "salience"
 check_contrast = true
 pywal = true
 [templates]

@@ -33,7 +33,7 @@ spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPL
 spawn-at-startup "/usr/lib/xdg-desktop-portal-gnome"  // XDG portals for desktop integration.
 spawn-at-startup "xwayland-satellite"  // XWayland support.
 spawn-at-startup "awww-daemon"  // Wallpaper daemon.
-spawn-at-startup "ollama serve"  // Wallpaper daemon.
+spawn-at-startup "modelrelay"  // modelrelay
 spawn-at-startup "awww restore"  // Restore wallpaper.
 spawn-at-startup "waybar"  // Status bar.
 spawn-at-startup "dunst"  // Notification daemon.
@@ -146,7 +146,7 @@ overview {
 // Applied sequentially; use match/exclude.
 window-rule {
     match is-active=false
-    opacity 0.9  // Dim inactive windows.
+    //opacity 0.9  // Dim inactive windows.
 }
 window-rule {
     geometry-corner-radius 5  // Rounded corners for all.
@@ -219,7 +219,7 @@ binds {
     Mod+T { spawn "thorium-browser"; }  // Browser.
     Mod+Shift+W { spawn "~/.config/scripts/wallpaperSelect.sh"; }  // Wallpaper selector.
     Mod+Return { spawn "kitty"; }  // Terminal.
-    Mod+W { spawn "waypaper" " --next"; }  // Next wallpaper.
+    Mod+W { spawn "waypaper --random"; }  // Next wallpaper.
     Mod+B { spawn "~/.config/scripts/waybar.sh"; }  // Waybar script.
     Mod+Space { spawn "~/.config/rofi/launchers/type-1/launcher.sh"; }  // Rofi launcher.
     Mod+Shift+Return { spawn "foot"; }  // Alternative terminal.
