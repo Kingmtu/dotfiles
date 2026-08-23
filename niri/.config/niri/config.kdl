@@ -1,15 +1,9 @@
 // === Environment Variables ===
-// Sets environment variables for the Niri session (docs: Configuration: Miscellaneous).
-// Useful for Wayland hints, themes, etc. Values override system defaults; use null to unset.
 environment {
-    DISPLAY ":2"  // Custom display for compatibility.
+    DISPLAY ":0"  // Custom display for compatibility.
     ELECTRON_OZONE_PLATFORM_HINT "auto"  // Auto-detect for Electron apps.
     XCURSOR_THEME "Bibata-Modern-Ice"  // XCursor theme.
     XCURSOR_SIZE "24"  // Cursor size in pixels.
-    HYPRCURSOR_THEME "catppuccin-macchiato-lavender-cursors"  // Hyprcursor theme.
-    HYPRCURSOR_SIZE "24"  // Hyprcursor size.
-    QT_CURSOR_THEME "catppuccin-macchiato-lavender-cursors"  // Qt cursor theme.
-    QT_CURSOR_SIZE "24"  // Qt cursor size.
     XDG_SESSION_TYPE "wayland"  // Declare Wayland session.
     GDK_BACKEND "wayland,x11,*"  // GDK backends (Wayland primary).
     XDG_CURRENT_DESKTOP "wlroots"  // Desktop environment hint.
@@ -19,12 +13,39 @@ environment {
     QT_STYLE_OVERRIDE "kvantum"  // Qt style.
     QT_WAYLAND_DECORATION "kvantum"  // Qt decoration style.
 }
-/// Swayidle
-spawn-at-startup "swayidle" "-w" \
-    "timeout" "1200" "swaylock -f" \
-    "timeout" "600" "niri msg action power-off-monitors" \
-    "before-sleep" "swaylock -f"
+// include
+include "noctalia.kdl"
+// Blur
+/* Apps: blur them all without xray so it looks more realistic. */
+window-rule {
+  background-effect {
+    blur true
+    xray false
+    }
+}
 
+/*
+  Noctalia
+  Disable xray on all our surfaces so it looks more realistic.
+  Noctalia publishes blur regions automatically when ext-background-effects is available.
+*/
+layer-rule {
+  match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+  background-effect {
+    xray false
+    // blur false
+    }
+}
+
+/* You can also fine-tune the blur effect globally. */
+blur {
+  passes 2        // more passes = stronger blur (default: 3)
+  offset 3.0      // sample distance per pass (default: 3.0)
+  noise 0.03      // grain overlay (default: 0.02)
+  saturation 1.0  // color saturation boost (default: 1.5)
+}
+// Swayidle
+spawn-at-startup "swayidle" "-w" "timeout" "1200" "swaylock -f" "timeout" "600" "niri msg action power-off-monitors" "before-sleep" "swaylock -f"
 
 // === Startup Processes ===
 // Spawn processes at startup in order (docs: Configuration: Miscellaneous).
@@ -32,6 +53,7 @@ spawn-at-startup "swayidle" "-w" \
 spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"  // Update env for portals.
 spawn-at-startup "/usr/lib/xdg-desktop-portal-gnome"  // XDG portals for desktop integration.
 spawn-at-startup "xwayland-satellite"  // XWayland support.
+spawn-at-startup "noctalia"  // Noctalia Shell
 spawn-at-startup "awww-daemon"  // Wallpaper daemon.
 spawn-at-startup "modelrelay"  // modelrelay
 spawn-at-startup "awww restore"  // Restore wallpaper.
@@ -50,6 +72,8 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // Configures keyboards, pointers, etc. (docs: Configuration: Input).
 // Settings apply globally; no per-device config yet.
 input {
+    focus-follows-mouse max-scroll-amount="5%"
+
     keyboard {
         xkb {
             layout "us"  // Keyboard layout.
@@ -66,7 +90,6 @@ input {
         natural-scroll  // Enable natural scrolling.
         accel-speed 0.5  // Acceleration speed.
     }
-    focus-follows-mouse max-scroll-amount="5%"  // Enable with scroll limit to prevent accidental switches.
     workspace-auto-back-and-forth  // Added: Switch back to previous workspace on repeat (improvement).
 }
 
@@ -94,56 +117,47 @@ prefer-no-csd
 // Per-output settings by connector name (docs: Configuration: Outputs).
 // Use `niri msg outputs` for names/modes. Fixed positions to avoid overlap.
 output "HDMI-A-1" {
-    mode "1366x768@59.790"  // Resolution and refresh rate.
-    position x=0 y=0  // Adjusted to start at origin for logical layout.
+    mode "1920x1080@60.000"  // Resolution and refresh rate.
     scale 1.0  // Scaling factor.
-    variable-refresh-rate on-demand=true  // VRR on-demand for efficiency.
+    transform "normal"
+    position x=6273 y=-3661  // Adjusted to start at origin for logical layout.
+
+
+    variable-refresh-rate
+
 }
 output "DP-2" {
     mode "1280x1024@75.025"
-    position x=1366 y=0  // Placed to the right of HDMI-A-1.
     scale 1.0
+    transform "normal"
+    position x=1366 y=0  // Placed to the right of HDMI-A-1.
     variable-refresh-rate on-demand=true
+
 }
 
 // === Layer Rules ===
 // Rules for layer-shell windows like panels (docs: Configuration: Layer-Rules).
 // Applied sequentially; matches use regex.
 layer-rule {
-    match namespace="waybar"
-    match at-startup=true
-    // opacity 0.5  // Semi-transparent.
-    block-out-from "screencast"  // Exclude from screencasts.
-    shadow {
-        on  // Enable shadow.
-        softness 40  // Blur radius.
-        spread 5  // Expansion.
-        offset x=0 y=5  // Shift.
-        draw-behind-window true  // Behind surface.
-        color "#00000064"  // Color with alpha.
-    }
-    geometry-corner-radius 5  // Rounded corners.
-    place-within-backdrop true  // In overview backdrop.
-    baba-is-float false  // Disable floating animation.
+  match namespace="^noctalia-backdrop"
+  place-within-backdrop true
 }
-layer-rule {
-    match namespace="^awww$"
-    place-within-backdrop true  // Wallpaper in backdrop.
-}
-layer-rule {
-    match namespace="rofi"
-    match at-startup=true
-    opacity 0.9  // Semi-transparent.
-}
-overview {
-  backdrop-color "transparent"
-  //wallpaper-in-backdrop stationary
-}
-
 
 // === Window Rules ===
 // Rules for XWayland/Wayland windows (docs: Configuration: Window-Rules).
 // Applied sequentially; use match/exclude.
+
+window-rule {
+  match app-id="dev.noctalia.Noctalia.Settings"
+  open-floating true
+  default-column-width { fixed 1080; }
+  default-window-height { fixed 720; }
+}
+debug {
+  // Allows notification actions and window activation from Noctalia.
+  honor-xdg-activation-with-invalid-serial
+}
+
 window-rule {
     match is-active=false
     //opacity 0.9  // Dim inactive windows.
@@ -151,6 +165,10 @@ window-rule {
 window-rule {
     geometry-corner-radius 5  // Rounded corners for all.
     clip-to-geometry true  // Clip to geometry.
+    draw-border-with-background false
+    background-effect {
+        xray false
+    }
     block-out-from "screen-capture"  // Exclude from captures.
 }
 window-rule {
@@ -163,31 +181,36 @@ window-rule {
 // === Layout Settings ===
 // Tiling and visual layout (docs: Configuration: Layout).
 layout {
-    gaps 5  // Gaps around windows.
+    gaps 10  // Gaps around windows.
     background-color "transparent"  // Transparent for wallpapers.
     preset-column-widths {
-        proportion 0.5  // Half width.
-        proportion 1.0  // Full width.
+ 
+
+        proportion 0.333
+        proportion 0.5
+        proportion 0.667
+        proportion 0.222
     }
     preset-window-heights {
         proportion 0.5  // Half height.
-        proportion 1.0  // Full height.
     }
-    default-column-width {}  // Auto or last preset.
+    default-column-width { proportion 0.5; }
+  // Auto or last preset.
     focus-ring {
         off
-        width 4  // Focus ring width around active window.
+
+        width 2  // Focus ring width around active window.
         active-gradient from="#87CEEB" to="#4682B4" angle=45 relative-to="workspace-view"  // Sky blue gradient for active window.
         inactive-gradient from="#B0C4DE" to="#D3DCE6" angle=45 relative-to="workspace-view"  // Subtle blue-gray for inactive windows.    border {
     }
-    struts {
-        // Reserved edges (uncomment for panels).
-        // left 64
-        // right 64
-        // top 64
-        // bottom 64
+    struts 
+
+    border {
+        width 2
     }
-    center-focused-column "on-overflow"  // Center when overflowing.
+    shadow {
+        on
+    }    //center-focused-column "on-overflow"  // Center when overflowing.
 }
 // === Animations ===
 // Animation configs (docs: Configuration: Animations).
@@ -212,28 +235,21 @@ animations {
 // Organized by category for readability. Mod is Super (or Alt nested).
 // Use allow-when-locked for media keys.
 binds {
-    // --- Overlay and Launchers ---
-    Mod+Shift+Slash { show-hotkey-overlay; }  // Show binds overlay.
-    Mod+R { spawn "wofi" "-i" "--show drun"; }  // App launcher.
-    Mod+y { spawn "~/.config/scripts/yazi.sh"; }  // File manager.
-    Mod+T { spawn "thorium-browser"; }  // Browser.
-    Mod+Shift+W { spawn "~/.config/scripts/wallpaperSelect.sh"; }  // Wallpaper selector.
-    Mod+Return { spawn "kitty"; }  // Terminal.
-    Mod+W { spawn "waypaper --random"; }  // Next wallpaper.
-    Mod+B { spawn "~/.config/scripts/waybar.sh"; }  // Waybar script.
-    Mod+Space { spawn "~/.config/rofi/launchers/type-1/launcher.sh"; }  // Rofi launcher.
-    Mod+Shift+Return { spawn "foot"; }  // Alternative terminal.
-    Mod+Shift+T { spawn "thunar"; }  // Radio app.
-    Mod+Shift+P { spawn "librewolf"; }  // Privacy browser.
-    Mod+Shift+C { spawn "qalculate-gtk"; }  // Calculator.
-    Mod+G { spawn "hyprpicker" "-ra"; }  // Color picker.
-    Mod+O { spawn "obsidian"; }  // Note-taking.
-    Mod+N { spawn "pavucontrol"; }  // Audio control.
-    Mod+Shift+N { spawn "blueman-manager"; }  // Bluetooth manager.
-    Mod+Shift+L { spawn "wlogout"; }  // Logout menu.
-    Mod+Shift+O { toggle-window-rule-opacity; }  // Toggle opacity rule.
+    Mod+Shift+W { spawn-sh "noctalia msg wallpaper-random"; }
+    Mod+Return { spawn "foot"; }
+    Mod+W { spawn-sh "noctalia msg panel-toggle wallpaper"; }
+    Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+Shift+Return { spawn "foot"; }
+    Mod+Shift+T { spawn "thunar"; }
+    Mod+Shift+P { spawn "librewolf"; }
+    Mod+Shift+C { spawn "qalculate-gtk"; }
+    Mod+G { spawn "hyprpicker" "-ra"; }
+    Mod+O { spawn "obsidian"; }
+    Mod+N { spawn "pavucontrol"; }
+    Mod+Shift+N { spawn "blueman-manager"; }
+    Mod+Shift+L { spawn "wlogout"; }
+    Mod+Shift+O { toggle-window-rule-opacity; }
     Mod+L { spawn "swaylock"; }
-    // --- Media and Volume Controls ---
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
     XF86AudioMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
@@ -243,15 +259,13 @@ binds {
     XF86AudioPlay allow-when-locked=true { spawn "playerctl" "play-pause"; }
     XF86AudioPause allow-when-locked=true { spawn "playerctl" "play-pause"; }
     XF86AudioStop allow-when-locked=true { spawn "playerctl" "stop"; }
-
-    // --- Window Management ---
-    Mod+Q { close-window; }  // Close focused window.
-    Mod+Shift+E { quit; }  // Quit Niri.
-    Ctrl+Alt+Delete { quit; }  // Emergency quit.
-    Mod+Alt+L { power-off-monitors; }  // Turn off monitors.
-    Mod+K { toggle-column-tabbed-display; }  // Toggle tabbed mode.
-    Mod+V { toggle-window-floating; }  // Toggle floating.
-    Mod+Shift+V { switch-focus-between-floating-and-tiling; }  // Switch focus layers.
+    Mod+Q { close-window; }
+    Mod+Shift+E { quit; }
+    Ctrl+Alt+Delete { quit; }
+    Mod+Alt+L { power-off-monitors; }
+    Mod+K { toggle-column-tabbed-display; }
+    Mod+V { toggle-window-floating; }
+    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
     // --- Focus Navigation ---
     Mod+Left { focus-column-left; }
@@ -329,20 +343,36 @@ binds {
     Mod+BracketRight { consume-or-expel-window-right; }
     Mod+Comma { consume-window-into-column; }
     Mod+Period { expel-window-from-column; }
-    Mod+D { switch-preset-column-width; }  // Cycle column widths.
-    Mod+F { maximize-column; }  // Maximize column.
-    Mod+Shift+D { switch-preset-window-height; }  // Cycle window heights.
-    Mod+Ctrl+Shift+D { reset-window-height; }  // Reset height.
-    Mod+Shift+F { fullscreen-window; }  // Fullscreen window.
-    Mod+C { center-column; }  // Center column.
-    Mod+Minus { set-column-width "-10%"; }  // Shrink column.
-    Mod+Equal { set-column-width "+10%"; }  // Expand column.
-    Mod+Shift+Minus { set-window-height "-10%"; }  // Shrink height.
-    Mod+Shift+Equal { set-window-height "+10%"; }  // Expand height.
+    Mod+D { switch-preset-column-width; }
+  // Cycle column widths.
+    Mod+F { maximize-column; }
+  // Maximize column.
+    Mod+Shift+D { switch-preset-window-height; }
+  // Reset height.
+    Mod+Shift+F { fullscreen-window; }
+  // Fullscreen window.
+    Mod+C { center-column; }
+  // Center column.
+    Mod+Minus { set-column-width "-10%"; }
+  // Shrink column.
+    Mod+Equal { set-column-width "+10%"; }
+  // Expand column.
+    Mod+Shift+Minus { set-window-height "-10%"; }
+  // Shrink height.
+    Mod+Shift+Equal { set-window-height "+10%"; }
+  // Expand height.
 
     // --- Screenshots ---
-    Print  { screenshot; }  // Full screenshot.
-    Ctrl+P { screenshot; }  // Full screenshot.
-    Alt+Print { screenshot-screen; }  // Screen screenshot.
-    Shift+Print { screenshot-window; }  // Window screenshot.
+    Print  { screenshot; }
+  // Full screenshot.
+    Ctrl+P { screenshot; }
+  // Full screenshot.
+    Alt+Print { screenshot-screen; }
+  // Screen screenshot.
+    Shift+Print { screenshot-window; }
+    Super+Z { spawn-sh "noctalia msg settings-toggle"; }
+    Super+S { toggle-overview; }  // Window screenshot.
 }
+
+
+

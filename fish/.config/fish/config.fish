@@ -27,6 +27,7 @@ alias tr3='exa --tree --level=3'
 #alias c="clear; neofetch --block_range 0 7"
 #export PATH="$"PATH":/home/bluebyt/.local/bin"
 export EDITOR="nvim"
+set -gx DISPLAY :0
 set -x PATH $PATH ~/.bin
 set -x PATH $PATH ~/.local/bin
 set -x PATH $PATH ~/.local/bin/eww
@@ -83,3 +84,6 @@ source (path filter $__fish_user_data_dir/plugins/plug.fish/conf.d/plugin_load.f
 
 # opencode
 fish_add_path /home/jarvis/.opencode/bin
+
+# Added by Antigravity CLI installer
+set -gx PATH "/home/jarvis/.local/bin" $PATH
