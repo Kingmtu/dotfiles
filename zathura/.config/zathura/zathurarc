@@ -1,58 +1,23 @@
 # Zathura configuration file
 # See man `man zathurarc'
-
+include noctaliarc
 # Open document in fit-width mode by default
 set adjust-open "best-fit"
-
 # One page per row by default
 set pages-per-row 1
-
 #stop at page boundries
 set scroll-page-aware "true"
 set smooth-scroll "true"
 set scroll-full-overlap 0.01
 set scroll-step 100
-
 #zoom settings
 set zoom-min 10
 set guioptions ""
-
 # Theme using template variables
 set recolor "true"
-
-set completion-bg "#000004"
-set completion-fg "#DDE8D9"
-set completion-group-bg "#000004"
-set completion-group-fg "#86776A"
-set completion-highlight-bg "#DDE8D9"
-set completion-highlight-fg "#000004"
-
-set recolor-lightcolor "#000004"
-set recolor-darkcolor "#DDE8D9"
-set default-bg "#000004"
-set default-fg "#DDE8D9"
-
-set inputbar-bg "#000004"
-set inputbar-fg "#DDE8D9"
-set notification-bg "#000004"
-set notification-fg "#DDE8D9"
-set notification-error-bg "#676F78"
-set notification-error-fg "#DDE8D9"
-set notification-warning-bg "#676F78"
-set notification-warning-fg "#DDE8D9"
-set statusbar-bg "#000004"
-set statusbar-fg "#DDE8D9"
-set index-bg "#000004"
-set index-fg "#DDE8D9"
-set index-active-bg "#DDE8D9"
-set index-active-fg "#000004"
-set render-loading-bg "#000004"
-set render-loading-fg "#DDE8D9"
-
 set window-title-home-tilde true
 set statusbar-basename true
 set selection-clipboard clipboard
-
 set font "JetbrainsMono Nerd Font 10"
 set recolor-reverse-video "true"
 set recolor-keephue "true"
@@ -61,3 +26,28 @@ set scroll-step 50
 unmap f
 map f toggle_fullscreen
 map [fullscreen] f toggle_fullscreen
+
+map [normal] u scroll half-up
+map [normal] d scroll half-down
+map [fullscreen] u scroll half-up
+map [fullscreen] d scroll half-down
+
+# Full-page scrolling with Space and Shift+Space
+map [normal] <Space> scroll full-down
+map [normal] <S-Space> scroll full-up
+
+# Mode toggles
+map [normal] i recolor                       # Quick dark/light toggle
+map [normal] D toggle_page_mode              # Toggle single / dual page view
+map [normal] b toggle_statusbar              # Toggle status bar visibility
+map [normal] F toggle_fullscreen             # Fullscreen toggle
+
+# Fit adjustments
+map [normal] a adjust_window best-fit
+map [normal] s adjust_window width
+
+# Zooming
+map [normal] = zoom in
+map [normal] - zoom out
+map [normal] 0 zoom 100
+
