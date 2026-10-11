@@ -40,7 +40,6 @@ map [normal] <S-Space> scroll full-up
 map [normal] i recolor                       # Quick dark/light toggle
 map [normal] D toggle_page_mode              # Toggle single / dual page view
 map [normal] b toggle_statusbar              # Toggle status bar visibility
-map [normal] F toggle_fullscreen             # Fullscreen toggle
 
 # Fit adjustments
 map [normal] a adjust_window best-fit
